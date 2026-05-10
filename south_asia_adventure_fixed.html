@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Asia Adventure 🌏</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --saffron:#FF6B35; --indigo:#2C3E7A; --teal:#00BFA5;
+  --gold:#FFD166; --coral:#FF6B6B; --mint:#C8F5E9;
+  --sky:#74C0FC; --rose:#FF8FAB; --lime:#B8F0A0;
+  --purple:#9B59B6; --cream:#FFF9F0; --dark:#1A1A2E;
+  --zara:#FF6B35; --bubble:#FFF3E0;
+  --r:16px; --shadow:0 6px 24px rgba(0,0,0,0.13);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Quicksand',sans-serif;background:var(--cream);color:#333;overflow-x:hidden;}
+
+/* ─── HERO ─── */
+.hero{
+  background:linear-gradient(135deg,#FF6B35 0%,#FF8FAB 40%,#2C3E7A 100%);
+  min-height:220px;padding:2rem 1rem 1.5rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero-stars{position:absolute;inset:0;pointer-events:none;}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle 2s infinite alternate;}
+@keyframes twinkle{from{opacity:.2;transform:scale(.8)}to{opacity:1;transform:scale(1.2)}}
+.hero h1{font-family:'Fredoka One',cursive;font-size:2.6rem;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.3);position:relative;}
+.hero p{color:rgba(255,255,255,.9);font-size:1rem;margin-top:.4rem;position:relative;font-weight:600;}
+.hero-emoji{font-size:2.2rem;margin-top:.5rem;position:relative;animation:float 3s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ─── ZARA AVATAR ─── */
+.zara-fixed{
+  position:fixed;bottom:20px;right:16px;z-index:500;
+  display:flex;flex-direction:column;align-items:flex-end;gap:6px;
+  pointer-events:none;
+}
+.zara-face{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,#FF8FAB,#FF6B35);
+  border:3px solid #fff;box-shadow:0 4px 16px rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;cursor:pointer;pointer-events:all;
+  transition:transform .2s;animation:float 3s ease-in-out infinite;
+}
+.zara-face:hover{transform:scale(1.15);}
+.zara-bubble{
+  background:var(--bubble);border:2px solid var(--saffron);
+  border-radius:14px 14px 4px 14px;padding:.7rem 1rem;
+  max-width:200px;font-size:.82rem;font-weight:700;color:#333;
+  box-shadow:var(--shadow);display:none;
+  pointer-events:all;position:relative;line-height:1.4;
+}
+.zara-bubble.visible{display:block;animation:popIn .3s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+
+/* ─── NAV ─── */
+.nav{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem;
+  padding:.8rem 1rem;background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.08);
+  position:sticky;top:0;z-index:100;
+}
+.tab{
+  font-family:'Fredoka One',cursive;font-size:.85rem;
+  padding:.4rem .9rem;border-radius:20px;border:none;cursor:pointer;
+  background:#f0f0f0;color:#666;transition:all .2s;letter-spacing:.3px;
+}
+.tab:hover{transform:translateY(-2px);}
+.tab.active{color:#fff;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.2);}
+.tab[data-t="countries"].active{background:#00BFA5;}
+.tab[data-t="geo"].active{background:#2C3E7A;}
+.tab[data-t="climate"].active{background:#74C0FC;color:#333;}
+.tab[data-t="history"].active{background:#FF6B35;}
+.tab[data-t="culture"].active{background:#9B59B6;}
+.tab[data-t="resources"].active{background:#388E3C;}
+.tab[data-t="vocab"].active{background:#FF6B6B;}
+.tab[data-t="mapquiz"].active{background:#FFD166;color:#333;}
+.tab[data-t="quiz"].active{background:#E91E63;}
+
+/* ─── SECTIONS ─── */
+.section{display:none;max-width:860px;margin:0 auto;padding:1.5rem 1rem 4rem;}
+.section.active{display:block;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── ZARA DIALOGUE BOXES ─── */
+.zara-says{
+  display:flex;gap:1rem;align-items:flex-start;
+  background:var(--bubble);border:2.5px solid var(--saffron);
+  border-radius:0 16px 16px 16px;padding:1rem 1.2rem;
+  margin-bottom:1.2rem;position:relative;
+}
+.zara-says::before{
+  content:'';position:absolute;top:-2px;left:-2px;
+  width:14px;height:14px;background:var(--saffron);
+  clip-path:polygon(0 0,100% 0,0 100%);border-radius:2px 0 0 0;
+}
+.z-avatar{font-size:2rem;flex-shrink:0;}
+.z-text{font-size:.92rem;font-weight:600;line-height:1.55;color:#333;}
+.z-text strong{color:var(--indigo);}
+.z-name{font-family:'Fredoka One',cursive;color:var(--saffron);font-size:.75rem;margin-bottom:.2rem;}
+
+/* ─── THINK BUBBLE (rhetorical q) ─── */
+.think{
+  background:#EDE7F6;border:2.5px dashed var(--purple);
+  border-radius:16px;padding:1rem 1.2rem;margin:1rem 0;
+  font-size:.9rem;font-weight:700;color:var(--purple);
+  display:flex;gap:.7rem;align-items:center;
+}
+.think-icon{font-size:1.6rem;}
+
+/* ─── CLICK REVEAL ─── */
+.reveal-card{
+  background:#fff;border:2.5px solid #ddd;border-radius:14px;
+  padding:1rem 1.2rem;margin:.7rem 0;cursor:pointer;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.reveal-card:hover{border-color:var(--teal);transform:translateX(4px);}
+.reveal-card .reveal-q{font-weight:700;font-size:.92rem;display:flex;justify-content:space-between;align-items:center;}
+.reveal-card .reveal-q .arrow{transition:transform .3s;font-size:1.2rem;color:#aaa;}
+.reveal-card.open .arrow{transform:rotate(90deg);color:var(--teal);}
+.reveal-answer{
+  max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;
+  opacity:0;font-size:.88rem;font-weight:600;line-height:1.5;color:#444;
+}
+.reveal-card.open .reveal-answer{max-height:300px;opacity:1;padding-top:.7rem;}
+.reveal-label{font-size:.7rem;font-weight:800;text-transform:uppercase;color:var(--teal);letter-spacing:.5px;margin-bottom:.2rem;}
+
+/* ─── STORY SCROLL ─── */
+.story-panel{
+  background:linear-gradient(135deg,#1A1A2E,#2C3E7A);
+  border-radius:20px;padding:1.5rem;margin-bottom:1.2rem;
+  color:#fff;position:relative;overflow:hidden;
+}
+.story-panel::after{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:100px;height:100px;border-radius:50%;
+  background:rgba(255,255,255,.05);
+}
+.story-panel h3{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:.7rem;}
+.story-panel p{font-size:.88rem;line-height:1.6;opacity:.9;}
+.story-badge{
+  display:inline-block;background:var(--gold);color:#333;
+  font-family:'Fredoka One',cursive;font-size:.75rem;
+  padding:.2rem .7rem;border-radius:10px;margin-bottom:.6rem;
+}
+
+/* ─── ANALOGY CARD ─── */
+.analogy{
+  background:linear-gradient(135deg,var(--lime),var(--mint));
+  border-radius:16px;padding:1.2rem;margin:1rem 0;
+  border-left:5px solid var(--teal);
+}
+.analogy h4{font-family:'Fredoka One',cursive;font-size:1.1rem;color:#1A5C50;margin-bottom:.4rem;}
+.analogy p{font-size:.88rem;font-weight:600;color:#1A5C50;line-height:1.5;}
+
+/* ─── COUNTRY CARDS ─── */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;margin-bottom:1rem;}
+.c-card{
+  border-radius:18px;padding:1.2rem;cursor:pointer;
+  box-shadow:var(--shadow);transition:transform .25s,box-shadow .25px;
+  position:relative;overflow:hidden;
+}
+.c-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.18);}
+.c-card .flag{font-size:2.8rem;display:block;margin-bottom:.4rem;}
+.c-card h3{font-family:'Fredoka One',cursive;font-size:1.2rem;margin-bottom:.2rem;}
+.c-card .cap{font-size:.8rem;font-weight:700;opacity:.85;}
+.c-card .pop{font-size:.78rem;opacity:.75;margin-top:.2rem;}
+.c-card .c-detail{
+  font-size:.8rem;font-weight:600;
+  max-height:0;overflow:hidden;transition:max-height .4s,opacity .3s;opacity:0;
+  margin-top:.5rem;border-top:1px solid rgba(255,255,255,.3);padding-top:0;
+}
+.c-card.open .c-detail{max-height:200px;opacity:1;padding-top:.5rem;}
+.c-card .tap-hint{font-size:.68rem;opacity:.6;position:absolute;bottom:.5rem;right:.8rem;}
+
+/* ─── TIMELINE ─── */
+.tl-wrapper{position:relative;padding-left:2.5rem;}
+.tl-wrapper::before{
+  content:'';position:absolute;left:1rem;top:0;bottom:0;
+  width:4px;border-radius:2px;
+  background:linear-gradient(to bottom,var(--saffron),var(--coral),var(--purple),var(--indigo));
+}
+.tl-entry{position:relative;margin-bottom:1rem;}
+.tl-dot{
+  position:absolute;left:-1.75rem;top:1rem;
+  width:18px;height:18px;border-radius:50%;
+  border:3px solid #fff;box-shadow:0 0 0 2px var(--saffron);
+  background:var(--saffron);cursor:pointer;transition:transform .2s;
+}
+.tl-dot:hover{transform:scale(1.4);}
+.tl-card{
+  background:#fff;border-radius:14px;padding:1rem 1.2rem;
+  box-shadow:var(--shadow);cursor:pointer;border-left:4px solid var(--saffron);
+  transition:transform .2s;
+}
+.tl-card:hover{transform:translateX(4px);}
+.tl-year{font-family:'Fredoka One',cursive;font-size:1rem;color:var(--coral);}
+.tl-title{font-weight:800;font-size:.95rem;margin:.2rem 0;}
+.tl-body{
+  font-size:.85rem;font-weight:600;line-height:1.5;color:#555;
+  max-height:0;overflow:hidden;transition:max-height .4s,opacity .3s;opacity:0;
+}
+.tl-card.open .tl-body{max-height:300px;opacity:1;padding-top:.5rem;}
+.tl-hint{font-size:.68rem;color:#aaa;margin-top:.3rem;}
+
+/* ─── RELIGION WHEEL CLICK ─── */
+.rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-bottom:1rem;}
+.rel-pill{
+  border-radius:14px;padding:1rem .8rem;text-align:center;
+  color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s;
+  box-shadow:var(--shadow);
+}
+.rel-pill:hover{transform:scale(1.05);box-shadow:0 10px 24px rgba(0,0,0,.2);}
+.rel-pill .rel-icon{font-size:2rem;display:block;margin-bottom:.3rem;}
+.rel-pill h4{font-family:'Fredoka One',cursive;font-size:.95rem;}
+.rel-detail-box{
+  display:none;background:#fff;border-radius:14px;
+  padding:1.2rem;box-shadow:var(--shadow);margin-top:.5rem;
+  border-left:5px solid var(--purple);animation:fadeUp .3s ease;
+}
+.rel-detail-box.visible{display:block;}
+
+/* ─── VOCAB FLIP ─── */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;}
+.v-card{perspective:800px;height:150px;cursor:pointer;}
+.v-inner{
+  width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.4,0,.2,1);border-radius:14px;position:relative;
+}
+.v-card.flipped .v-inner{transform:rotateY(180deg);}
+.v-front,.v-back{
+  position:absolute;inset:0;border-radius:14px;
+  backface-visibility:hidden;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:1rem;text-align:center;
+  box-shadow:var(--shadow);
+}
+.v-front{background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;}
+.v-front .vt{font-family:'Fredoka One',cursive;font-size:1.3rem;}
+.v-front .vh{font-size:.7rem;opacity:.7;margin-top:.3rem;}
+.v-back{background:linear-gradient(135deg,var(--gold),var(--saffron));color:#333;transform:rotateY(180deg);}
+.v-back .vd{font-size:.85rem;font-weight:700;line-height:1.4;}
+
+/* ─── MAP QUIZ ─── */
+.map-wrap{background:#fff;border-radius:20px;padding:1.2rem;box-shadow:var(--shadow);margin-bottom:1rem;}
+.map-prompt{
+  font-family:'Fredoka One',cursive;font-size:1.25rem;
+  text-align:center;margin-bottom:.7rem;min-height:2rem;
+  color:var(--indigo);
+}
+.map-feedback{text-align:center;font-weight:800;font-size:.95rem;min-height:1.5rem;margin-top:.5rem;}
+.map-score{text-align:center;font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--teal);margin-top:.3rem;}
+.map-start-btn{display:block;margin:.8rem auto 0;}
+
+/* ─── MINI-GAMES ─── */
+.game-box{
+  background:linear-gradient(135deg,#1A1A2E,#2C3E7A);
+  border-radius:20px;padding:1.5rem;margin:1rem 0;color:#fff;
+}
+.game-box h3{font-family:'Fredoka One',cursive;font-size:1.3rem;margin-bottom:.7rem;}
+
+/* Sorting game */
+.sort-pool{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;min-height:44px;}
+.sort-chip{
+  background:var(--gold);color:#333;border-radius:20px;
+  padding:.35rem .9rem;font-size:.82rem;font-weight:700;
+  cursor:grab;user-select:none;transition:all .2s;
+  display:flex;align-items:center;gap:.3rem;
+}
+.sort-chip:active{cursor:grabbing;opacity:.7;}
+.sort-bins{display:flex;flex-wrap:wrap;gap:.8rem;}
+.sort-bin{
+  flex:1;min-width:130px;border:2.5px dashed rgba(255,255,255,.4);
+  border-radius:14px;padding:.7rem;min-height:80px;
+  transition:all .2s;
+}
+.sort-bin.dragover{border-color:var(--gold);background:rgba(255,209,102,.15);}
+.sort-bin h4{font-size:.82rem;font-weight:800;margin-bottom:.4rem;opacity:.8;}
+.sort-bin.correct{border-color:#66BB6A;background:rgba(102,187,106,.15);}
+.sort-bin.wrong{border-color:#EF5350;background:rgba(239,83,80,.15);}
+.sort-chip .rm{background:rgba(0,0,0,.2);border:none;border-radius:50%;width:16px;height:16px;font-size:.6rem;cursor:pointer;color:#333;display:inline-flex;align-items:center;justify-content:center;}
+
+/* Sequence game */
+.seq-items{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0;}
+.seq-chip{
+  background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);
+  border-radius:12px;padding:.5rem .9rem;font-size:.85rem;font-weight:700;
+  cursor:pointer;transition:all .2s;
+}
+.seq-chip:hover{background:rgba(255,255,255,.25);}
+.seq-chip.selected{background:var(--gold);color:#333;border-color:var(--gold);}
+.seq-chip.correct{background:#66BB6A;border-color:#66BB6A;color:#fff;}
+.seq-chip.wrong{background:#EF5350;border-color:#EF5350;color:#fff;}
+.seq-order{display:flex;gap:.5rem;margin:.8rem 0;flex-wrap:wrap;min-height:44px;}
+.seq-slot{
+  min-width:80px;height:38px;border:2.5px dashed rgba(255,255,255,.3);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);padding:0 .5rem;
+}
+
+/* Who Am I? game */
+.who-clues{margin:1rem 0;}
+.clue{
+  background:rgba(255,255,255,.1);border-radius:10px;padding:.7rem 1rem;
+  margin-bottom:.5rem;font-size:.88rem;font-weight:700;
+  display:flex;align-items:center;gap:.7rem;
+  cursor:pointer;border:2px solid transparent;transition:all .2s;
+}
+.clue.revealed{border-color:var(--gold);}
+.clue-num{background:var(--gold);color:#333;border-radius:50%;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0;}
+.clue-text{opacity:0;transition:opacity .4s;}
+.clue.revealed .clue-text{opacity:1;}
+.clue .clue-hint{font-size:.72rem;opacity:.5;}
+.who-answer{
+  margin-top:.8rem;background:rgba(255,255,255,.15);border-radius:12px;padding:1rem;
+  display:none;
+}
+.who-answer.visible{display:block;animation:fadeUp .3s ease;}
+.who-input{
+  display:flex;gap:.5rem;margin-top:.7rem;flex-wrap:wrap;
+}
+.who-opt{
+  background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.3);
+  border-radius:10px;padding:.45rem .9rem;font-size:.85rem;font-weight:700;
+  cursor:pointer;color:#fff;transition:all .2s;
+}
+.who-opt:hover{background:rgba(255,255,255,.25);}
+.who-opt.correct{background:#66BB6A;border-color:#66BB6A;}
+.who-opt.wrong{background:#EF5350;border-color:#EF5350;}
+
+/* ─── QUIZ ─── */
+.quiz-intro-box{
+  text-align:center;background:linear-gradient(135deg,#E91E63,#9B59B6);
+  border-radius:20px;padding:2rem;color:#fff;margin-bottom:1.5rem;
+}
+.quiz-intro-box h2{font-family:'Fredoka One',cursive;font-size:2rem;}
+.qpbar{height:10px;background:#eee;border-radius:5px;margin-bottom:1.2rem;overflow:hidden;}
+.qpfill{height:100%;background:linear-gradient(to right,var(--teal),var(--indigo));border-radius:5px;transition:width .4s;}
+.qcard{background:#fff;border-radius:20px;padding:1.5rem;box-shadow:var(--shadow);margin-bottom:1rem;}
+.qbadge{display:inline-block;font-size:.7rem;font-weight:800;padding:.2rem .6rem;border-radius:10px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;}
+.bmc{background:#E3F2FD;color:var(--indigo);}
+.btf{background:#FFF3E0;color:#E65100;}
+.bmatch{background:#F3E5F5;color:var(--purple);}
+.bdrag{background:#E8F5E9;color:#2E7D32;}
+.qtext{font-family:'Fredoka One',cursive;font-size:1.25rem;line-height:1.4;margin-bottom:1.1rem;}
+.mc-opts{display:grid;gap:.6rem;}
+.mc-opt{
+  background:#f8f8f8;border:2.5px solid #e0e0e0;border-radius:12px;
+  padding:.75rem 1rem;cursor:pointer;font-weight:700;font-size:.92rem;
+  transition:all .2s;text-align:left;
+}
+.mc-opt:hover:not(.locked){border-color:var(--indigo);background:#EEF2FF;transform:translateX(4px);}
+.mc-opt.correct{background:#E8F5E9;border-color:#4CAF50;color:#2E7D32;}
+.mc-opt.wrong{background:#FFEBEE;border-color:#F44336;color:#C62828;}
+.mc-opt.locked{cursor:not-allowed;}
+.tf-row{display:flex;gap:1rem;}
+.tf-b{
+  flex:1;padding:.9rem;border-radius:14px;border:3px solid transparent;
+  font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;transition:all .2s;
+}
+.tf-t{background:#E8F5E9;color:#2E7D32;border-color:#4CAF50;}
+.tf-f{background:#FFEBEE;color:#C62828;border-color:#F44336;}
+.tf-b:hover:not(.locked){transform:scale(1.04);}
+.tf-b.sc{background:#4CAF50;color:#fff;border-color:#4CAF50;}
+.tf-b.sw{background:#F44336;color:#fff;border-color:#F44336;}
+.match-row{display:flex;gap:.8rem;}
+.match-col{flex:1;}
+.match-col h5{font-weight:800;font-size:.82rem;color:#888;margin-bottom:.5rem;}
+.match-item{
+  border:2.5px solid #e0e0e0;border-radius:10px;padding:.55rem .8rem;
+  margin-bottom:.45rem;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;min-height:40px;
+  display:flex;align-items:center;
+}
+.match-item.term{background:#EEF2FF;border-color:var(--indigo);}
+.match-item.def{background:#E0F2F1;border-color:var(--teal);}
+.match-item.term:hover:not(.locked){background:#C5CAE9;}
+.match-item.def:hover:not(.locked){background:#B2DFDB;}
+.match-item.sel-t{background:var(--indigo);color:#fff;}
+.match-item.sel-d{background:var(--teal);color:#fff;}
+.match-item.mc-ok{background:#4CAF50;color:#fff;border-color:#4CAF50;}
+.match-item.mc-bad{background:#F44336;color:#fff;border-color:#F44336;animation:shake .35s;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.q-fb{
+  margin-top:.7rem;padding:.6rem .9rem;border-radius:10px;font-weight:700;
+  font-size:.88rem;display:none;
+}
+.q-fb.ok{background:#E8F5E9;color:#2E7D32;border-left:4px solid #4CAF50;display:block;}
+.q-fb.bad{background:#FFEBEE;color:#C62828;border-left:4px solid #F44336;display:block;}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:.8rem;}
+.qscore{font-weight:800;color:var(--teal);}
+.results-box{
+  text-align:center;background:linear-gradient(135deg,#1A1A2E,#2C3E7A);
+  color:#fff;border-radius:24px;padding:2.5rem 2rem;box-shadow:var(--shadow);
+}
+.r-score{font-family:'Fredoka One',cursive;font-size:3.8rem;color:var(--gold);}
+.r-msg{font-size:1.2rem;font-weight:800;margin:.4rem 0;}
+.r-breakdown{background:rgba(255,255,255,.1);border-radius:14px;padding:1rem;margin:1rem 0;text-align:left;}
+.rb{display:flex;justify-content:space-between;font-size:.85rem;padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.1);}
+
+/* ─── DRAG DROP QUIZ ─── */
+.dpool{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:.8rem;min-height:40px;}
+.dchip{
+  background:var(--indigo);color:#fff;border-radius:20px;
+  padding:.35rem .85rem;font-size:.82rem;font-weight:700;
+  cursor:grab;display:flex;align-items:center;gap:.35rem;user-select:none;
+}
+.dchip .rmx{background:rgba(255,255,255,.25);border:none;border-radius:50%;width:16px;height:16px;font-size:.6rem;cursor:pointer;color:#fff;display:inline-flex;align-items:center;justify-content:center;}
+.dbins{display:flex;flex-wrap:wrap;gap:.6rem;}
+.dbin{
+  flex:1;min-width:120px;border:2.5px dashed #ccc;border-radius:12px;
+  padding:.55rem;min-height:80px;transition:all .2s;
+}
+.dbin.over{border-color:var(--teal);background:#E0F7FA;}
+.dbin h5{font-size:.8rem;font-weight:800;color:#555;margin-bottom:.4rem;}
+.dbin.dbin-ok{border-color:#4CAF50;background:#E8F5E9;}
+.dbin.dbin-bad{border-color:#F44336;background:#FFEBEE;}
+
+/* ─── UTILS ─── */
+.btn{
+  font-family:'Fredoka One',cursive;padding:.6rem 1.4rem;border:none;
+  border-radius:22px;cursor:pointer;font-size:.95rem;transition:all .2s;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.2);}
+.btn-teal{background:var(--teal);color:#fff;}
+.btn-saffron{background:var(--saffron);color:#fff;}
+.btn-indigo{background:var(--indigo);color:#fff;}
+.btn-coral{background:var(--coral);color:#fff;}
+.pill{display:inline-block;border-radius:20px;padding:.25rem .75rem;font-size:.78rem;font-weight:800;}
+.fun-fact{
+  background:linear-gradient(135deg,var(--gold),#FFB300);
+  border-radius:14px;padding:1rem 1.2rem;margin:.8rem 0;
+  display:flex;gap:.7rem;align-items:flex-start;
+}
+.ff-icon{font-size:1.5rem;flex-shrink:0;}
+.ff-text{font-size:.86rem;font-weight:700;color:#4E3600;line-height:1.5;}
+.section-title{font-family:'Fredoka One',cursive;font-size:1.7rem;color:var(--indigo);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.hl{background:#FFF9C4;border-radius:6px;padding:.1rem .3rem;font-weight:800;}
+.info-block{background:#fff;border-radius:14px;padding:1.2rem;margin:.8rem 0;box-shadow:var(--shadow);}
+.info-block.teal{border-left:5px solid var(--teal);}
+.info-block.orange{border-left:5px solid var(--saffron);}
+.info-block.purple{border-left:5px solid var(--purple);}
+.info-block.red{border-left:5px solid var(--coral);}
+.info-block.green{border-left:5px solid #388E3C;}
+.info-block h3{font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:.5rem;}
+.info-block ul{padding-left:1.2rem;}
+.info-block li{font-size:.88rem;font-weight:600;margin-bottom:.3rem;line-height:1.4;}
+.badge-count{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;font-size:.7rem;font-weight:800;
+  background:var(--saffron);color:#fff;margin-right:.3rem;
+}
+
+/* ─── COMPARE TABLE ─── */
+.compare-tbl{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+.compare-tbl th{background:var(--indigo);color:#fff;padding:.7rem;text-align:left;font-size:.88rem;}
+.compare-tbl td{padding:.6rem .7rem;border-bottom:1px solid #eee;font-size:.85rem;font-weight:600;}
+.compare-tbl tr:nth-child(even) td{background:#F8F9FF;}
+.compare-tbl tr:last-child td{border-bottom:none;}
+
+/* ─── POP BARS ─── */
+.pb-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem;font-size:.84rem;}
+.pb-lbl{width:80px;font-weight:700;flex-shrink:0;}
+.pb-track{flex:1;height:18px;background:#eee;border-radius:9px;overflow:hidden;}
+.pb-fill{height:100%;border-radius:9px;transition:width 1.2s ease;}
+.pb-num{width:60px;font-size:.75rem;color:#666;flex-shrink:0;}
+
+/* confetti burst */
+.confetti-burst{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
+.cp{position:absolute;width:10px;height:10px;border-radius:2px;animation:confettiFall 1.4s ease-out forwards;}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+@media(max-width:600px){
+  .hero h1{font-size:1.9rem;}
+  .rel-grid{grid-template-columns:repeat(2,1fr);}
+  .match-row{flex-direction:column;}
+  .tf-row{gap:.5rem;}
+  .country-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- Stars background -->
+<div class="hero">
+  <div class="hero-stars" id="heroStars"></div>
+  <h1>🌏 South Asia Adventure!</h1>
+  <p>Your guide to the subcontinent — with Zara! 🦚</p>
+  <div class="hero-emoji">🏔️ 🕌 🐘 🌊 🎶 🌺</div>
+</div>
+
+<!-- Zara floating character -->
+<div class="zara-fixed">
+  <div class="zara-bubble" id="zaraBubble"></div>
+  <div class="zara-face" id="zaraFace" onclick="zaraSpeak()">🦚</div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="tab active" data-t="countries">🌍 Countries</button>
+  <button class="tab" data-t="geo">⛰️ Geography</button>
+  <button class="tab" data-t="climate">⛈️ Climate</button>
+  <button class="tab" data-t="history">📜 History</button>
+  <button class="tab" data-t="culture">🎭 Culture</button>
+  <button class="tab" data-t="resources">💎 Resources</button>
+  <button class="tab" data-t="vocab">📖 Vocab</button>
+  <button class="tab" data-t="mapquiz">🗺️ Map Quiz</button>
+  <button class="tab" data-t="quiz">🏆 Quiz!</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     COUNTRIES TAB
+════════════════════════════════════════════════ -->
+<div class="section active" id="s-countries">
+  <div class="section-title">🌍 The 7 Countries of South Asia</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">Hey! I'm Zara, your South Asia guide! 🌏 Did you know South Asia is called a <strong>subcontinent</strong>? It's like a GIANT peninsula that broke off and pushed up into Asia millions of years ago — like nature's own puzzle piece! <strong>Tap each country card</strong> to learn its secrets! 👇</div>
+    </div>
+  </div>
+
+  <div class="think">
+    <div class="think-icon">🤔</div>
+    <span>Quick! Can you name all 7 countries before you read them? Try it out loud before scrolling!</span>
+  </div>
+
+  <div class="country-grid" id="countryGrid"></div>
+
+  <div class="analogy">
+    <h4>🎭 Think of it like a school classroom!</h4>
+    <p>India is the super-tall student who sits in the middle taking up most of the space (1.45 BILLION people!). Pakistan is the cool kid on the left. Nepal and Bhutan are the quiet ones tucked in the back corner. Bangladesh is squeezed in on the right. Sri Lanka is the kid who moved their desk just outside the door — and Maldives is waaaay in the back of the school on a tiny little island desk! 🏝️</p>
+  </div>
+
+  <div class="info-block teal">
+    <h3>📊 Population: Who's the biggest?</h3>
+    <div id="popBars" style="margin-top:.5rem;"></div>
+  </div>
+
+  <div class="fun-fact">
+    <div class="ff-icon">🤯</div>
+    <div class="ff-text">India has <strong>1.45 BILLION people</strong>! That's about 18% of all humans on Earth living in ONE country. If everyone in India held hands and stood in a line, it would wrap around the Earth <strong>over 40 times!</strong></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     GEOGRAPHY TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-geo">
+  <div class="section-title">⛰️ Physical Geography</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">South Asia has some of the MOST dramatic geography on Earth — towering mountains, mighty rivers, and islands made of coral! <strong>Click each reveal box</strong> to explore! 🏔️</div>
+    </div>
+  </div>
+
+  <div class="story-panel">
+    <span class="story-badge">🌍 The Big Picture</span>
+    <h3>How did South Asia even get here?</h3>
+    <p>Millions of years ago, South Asia was its own separate landmass floating in the ocean — like a giant island! It slowly crashed into the rest of Asia. That collision was so powerful it pushed the land UP, creating the <strong>Himalaya Mountains</strong> — the tallest in the world! And guess what? The mountains are STILL growing — about 5mm a year. 😱</p>
+  </div>
+
+  <div class="think">
+    <div class="think-icon">🤔</div>
+    <span>The mountains act as a BARRIER. What do you think a barrier does? And if someone still wanted to cross... how might they?</span>
+  </div>
+
+  <!-- Reveal Cards: Mountain Ranges -->
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q">
+      <span>⛰️ <strong>Three Mountain Ranges</strong> — What are they called?</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="reveal-answer">
+      <div class="reveal-label">📍 The Answer</div>
+      🔴 <strong>Hindu Kush</strong> — the western range<br>
+      🟡 <strong>Karakoram</strong> — the central range (home to K2, the 2nd tallest peak)<br>
+      🔵 <strong>Himalaya</strong> — the eastern range with <strong>Mount Everest (29,028 ft!)</strong><br><br>
+      <em>Fun memory trick: <strong>H-K-H</strong> = "Hike? Keep Hiking!" — west to east! 🥾</em>
+    </div>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q">
+      <span>🚪 <strong>The Khyber Pass</strong> — Why does it matter?</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="reveal-answer">
+      <div class="reveal-label">📍 The Answer</div>
+      The mountains are so tall and steep that almost NO ONE could cross them — except through the <strong>Khyber Pass</strong>, a natural gap in the mountains. For thousands of years, traders, armies, and travelers used this one path to enter or leave South Asia. Whoever controlled the Khyber Pass controlled the gateway to the entire subcontinent! 🏰
+    </div>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q">
+      <span>🌊 <strong>Three Major Rivers</strong> — Can you name them?</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="reveal-answer">
+      <div class="reveal-label">📍 The Answer</div>
+      💧 <strong>Indus River</strong> — flows through Pakistan; one of the world's oldest civilizations started here!<br>
+      💧 <strong>Ganges River</strong> — sacred to Hindus; creates the world's longest alluvial plain; 1 in 10 people on Earth live near it!<br>
+      💧 <strong>Brahmaputra River</strong> — meets the Ganges at Bangladesh to form a massive delta<br><br>
+      <em>Memory trick: <strong>I Got Big</strong> = Indus, Ganges, Brahmaputra! 💪</em>
+    </div>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q">
+      <span>🌾 <strong>Alluvial Plain vs Delta</strong> — What's the difference?</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="reveal-answer">
+      <div class="reveal-label">📍 The Answer</div>
+      🌾 <strong>Alluvial Plain</strong> = The flat, SUPER fertile land created when a river drops rich soil along its banks. Think of it like the river leaving "gifts of dirt" for farmers! The Ganges creates the world's longest alluvial plain.<br><br>
+      🌊 <strong>Delta</strong> = Where a river meets the sea and drops all its soil right at the mouth — spreads out like a fan or triangle. Bangladesh sits on a giant delta formed by the Ganges + Brahmaputra! The word delta comes from the Greek letter Δ (triangle shaped!).
+    </div>
+  </div>
+
+  <div class="analogy">
+    <h4>🎒 The Backpack Analogy</h4>
+    <p>Imagine the river is a student walking across a field carrying a heavy backpack of soil. As the student gets tired, they drop things along the way — that's the alluvial plain. When they finally sit down at the end (the ocean), they dump EVERYTHING out — that's the delta. Bangladesh is basically sitting on a giant pile of dropped backpacks! 🎒</p>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q">
+      <span>🏝️ <strong>Two Island Countries</strong> — What makes each special?</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="reveal-answer">
+      <div class="reveal-label">📍 The Answer</div>
+      🔶 <strong>Sri Lanka</strong> — shaped like a teardrop! It's a big island just south of India's tip.<br>
+      🔷 <strong>Maldives</strong> — over 1,000 tiny islands! Many are <strong>atolls</strong> — ring-shaped coral islands with a lagoon in the middle. The Maldives is actually the lowest country on Earth. Rising sea levels are a HUGE threat to it! 🌊
+    </div>
+  </div>
+
+  <div class="fun-fact">
+    <div class="ff-icon">🌊</div>
+    <div class="ff-text">The Maldives' highest point is only about 2.4 meters above sea level. If sea levels rise much more due to climate change, the entire country could disappear underwater. The president once held a cabinet meeting UNDERWATER in scuba gear to draw attention to this! 🤿</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CLIMATE TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-climate">
+  <div class="section-title">⛈️ South Asia's Climates</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">South Asia has some of the most EXTREME weather on Earth! From desert dryness to monsoon floods — it's wild! <strong>Let's meet the characters</strong> of South Asia's weather! ⛈️</div>
+    </div>
+  </div>
+
+  <div class="think">
+    <div class="think-icon">🤔</div>
+    <span>Before reading: what do you think "tropical climate" means? Is it hot? Cold? Wet? Dry? Can you guess?</span>
+  </div>
+
+  <!-- Climate Characters -->
+  <div id="climateChars"></div>
+
+  <div class="analogy">
+    <h4>🎭 The Three Seasons as School Terms</h4>
+    <p>Think of South Asia's 3 seasons like a school year: <strong>🌡️ Hot Term</strong> (brutal exams, everyone suffering, no AC) → <strong>🌧️ Wet Term</strong> (monsoon arrives like a fire alarm going off — everyone gets soaked but secretly happy because it cools everything down) → <strong>❄️ Cool Term</strong> (everyone finally relaxes and breathes). Then it starts all over! 🔄</p>
+  </div>
+
+  <div class="game-box">
+    <h3>🎮 Weather Match-Up!</h3>
+    <p style="font-size:.85rem;opacity:.8;margin-bottom:1rem;">Click a weather type, then click its description to match it! Find all 5 matches!</p>
+    <div id="weatherGame"></div>
+    <div id="weatherResult" style="text-align:center;font-weight:800;margin-top:.7rem;font-size:1rem;"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HISTORY TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-history">
+  <div class="section-title">📜 South Asia Through Time</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">South Asia has one of the OLDEST and most fascinating histories in the world! We're talking 5,500+ years of civilizations, empires, inventions, and revolutions! <strong>Click each timeline card</strong> to open the story! 📜</div>
+    </div>
+  </div>
+
+  <div class="think">
+    <div class="think-icon">🤔</div>
+    <span>3500 BC is 5,500 years ago. Can you even imagine that? The pyramids of Egypt were being built around the same time! What do you think people were like back then?</span>
+  </div>
+
+  <div class="tl-wrapper" id="timeline"></div>
+
+  <!-- Who Am I Game -->
+  <div class="game-box" style="margin-top:1.5rem;">
+    <h3>🕵️ WHO AM I? — History Edition</h3>
+    <p style="font-size:.85rem;opacity:.8;margin-bottom:.7rem;">Reveal one clue at a time. Guess the historical figure with as few clues as possible!</p>
+    <div id="whoGame"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     CULTURE TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-culture">
+  <div class="section-title">🎭 People &amp; Culture</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">South Asia is like a giant pot of cultural stew — SO many religions, languages, foods, and art forms all mixed together! <strong>Click each religion bubble</strong> to explore it, and play the language challenge! 🌏</div>
+    </div>
+  </div>
+
+  <div class="think">
+    <div class="think-icon">🤔</div>
+    <span>India alone has 15+ major languages. What challenges do you think that creates for a country? And what might be the benefits?</span>
+  </div>
+
+  <!-- Religion Click Reveal -->
+  <div style="font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--indigo);margin-bottom:.8rem;">🙏 6 Major Religions — Click to explore!</div>
+  <div class="rel-grid" id="relGrid"></div>
+  <div class="rel-detail-box" id="relDetail"></div>
+
+  <!-- Language Sorting Game -->
+  <div class="game-box" style="margin-top:1.2rem;">
+    <h3>🗣️ Match the Language to the Country!</h3>
+    <p style="font-size:.85rem;opacity:.8;margin-bottom:1rem;">Drag each language card to its country bin!</p>
+    <div class="sort-pool" id="langPool"></div>
+    <div class="sort-bins" id="langBins"></div>
+    <div style="text-align:center;margin-top:.8rem;">
+      <button class="btn btn-saffron" onclick="checkLangSort()">✅ Check!</button>
+      <button class="btn btn-teal" onclick="resetLangSort()" style="margin-left:.5rem;">🔄 Reset</button>
+    </div>
+    <div id="langResult" style="text-align:center;font-weight:800;margin-top:.7rem;font-size:.95rem;color:#fff;"></div>
+  </div>
+
+  <div class="analogy" style="margin-top:1rem;">
+    <h4>🎬 Bollywood vs Hollywood</h4>
+    <p>Hollywood makes about 500-700 movies a year. Bollywood? Over <strong>1,500 movies a year!</strong> And Bollywood movies are famous for random bursting into song and dance with everyone perfectly choreographed. Imagine if your regular school day suddenly turned into a musical — that's basically Bollywood! 🎵💃</p>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q">
+      <span>🎵 <strong>What is a Sitar?</strong> And how does it sound?</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="reveal-answer">
+      <div class="reveal-label">📍 The Answer</div>
+      A <strong>sitar</strong> is a long-necked stringed instrument from India — imagine a super long guitar with a big round gourd on the bottom! It has 18-21 strings (most guitars only have 6!), and makes a twangy, wavy sound that's super distinctive. Famous musicians like Ravi Shankar played it so beautifully that even The Beatles came to India to learn about it! 🎸
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     RESOURCES TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-resources">
+  <div class="section-title">💎 Resources, Issues &amp; Solutions</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">South Asia is RICH in natural resources — gems, oil, gas, minerals! But there are also BIG challenges to face. Let's explore what South Asia has, and what it's working through! 💎</div>
+    </div>
+  </div>
+
+  <!-- Resource Sort Game -->
+  <div class="game-box">
+    <h3>💎 Sort the Resources!</h3>
+    <p style="font-size:.85rem;opacity:.8;margin-bottom:1rem;">Drag each resource to the correct country!</p>
+    <div class="sort-pool" id="resPool"></div>
+    <div class="sort-bins" id="resBins"></div>
+    <div style="text-align:center;margin-top:.8rem;">
+      <button class="btn btn-saffron" onclick="checkResSort()">✅ Check!</button>
+      <button class="btn btn-teal" onclick="resetResSort()" style="margin-left:.5rem;">🔄 Reset</button>
+    </div>
+    <div id="resResult" style="text-align:center;font-weight:800;margin-top:.7rem;font-size:.95rem;color:#fff;"></div>
+  </div>
+
+  <div class="think" style="margin-top:1rem;">
+    <div class="think-icon">🤔</div>
+    <span>India has uranium. Uranium is used to make nuclear power AND nuclear weapons. Both India AND Pakistan have nuclear weapons. Why do you think that's a problem if they keep fighting over Kashmir?</span>
+  </div>
+
+  <!-- Issues click-reveal -->
+  <div style="font-family:'Fredoka One',cursive;font-size:1.1rem;color:var(--indigo);margin:.8rem 0;">⚠️ Challenges — Click to understand each one!</div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q"><span>☢️ <strong>Kashmir Conflict</strong> — What's the dispute?</span><span class="arrow">▶</span></div>
+    <div class="reveal-answer">India and Pakistan both claim the Kashmir mountain region as theirs. They've fought multiple wars over it since 1947! It's tense because <strong>BOTH countries have nuclear weapons</strong>. It's like two people arguing over whose toy it is — except the "toy" is a mountain region and they both have rockets. 😬</div>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q"><span>💻 <strong>Outsourcing</strong> — Is it good or bad?</span><span class="arrow">▶</span></div>
+    <div class="reveal-answer">US companies hire Indian workers because wages are lower and lots of Indians speak English. For India: 👍 creates millions of tech jobs! For some US workers: 👎 fewer local jobs. For you personally: next time you call customer service and hear an Indian accent — that's outsourcing in action!</div>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q"><span>🌲 <strong>Deforestation</strong> — Why is it such a big deal?</span><span class="arrow">▶</span></div>
+    <div class="reveal-answer">Most of India's forests have been cut down. This means: tigers, elephants, and rhinos lose their homes 🐘, soil gets washed away by rain (erosion), floods get worse, AND the planet loses trees that absorb CO2. It's like cutting off your own lungs — the forest is literally how the land breathes!</div>
+  </div>
+
+  <div class="reveal-card" onclick="toggleReveal(this)">
+    <div class="reveal-q"><span>🌾 <strong>The Green Revolution</strong> — What was it?</span><span class="arrow">▶</span></div>
+    <div class="reveal-answer">In the 1960s-70s, India was running out of food. Scientists developed super crops that grew faster and bigger, plus better irrigation and fertilizers. This "Green Revolution" saved India from starvation and meant India no longer had to import food since the 1970s! But now even those methods aren't enough for 1.45 billion people... 🌾</div>
+  </div>
+
+  <div class="fun-fact">
+    <div class="ff-icon">🐯</div>
+    <div class="ff-text">India's forests are home to the <strong>tiger, Asian elephant, and one-horned rhinoceros</strong> — three of Earth's most endangered mammals. In 1900, there were ~100,000 wild tigers worldwide. Today? About 3,900. India has more than half of them!</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     VOCAB TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-vocab">
+  <div class="section-title">📖 Key Vocabulary</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">These 12 words WILL be on your test! 💪 <strong>Tap each card</strong> to flip it and see the definition. Then try to say it in your own words — that's how you REALLY know it! 🎯</div>
+    </div>
+  </div>
+
+  <div class="think">
+    <div class="think-icon">🤔</div>
+    <span>Challenge: Can you use 3 of these vocab words in one sentence about South Asia? Try it!</span>
+  </div>
+
+  <div class="vocab-grid" id="vocabGrid"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MAP QUIZ TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-mapquiz">
+  <div class="section-title">🗺️ South Asia Map Challenge</div>
+
+  <div class="zara-says">
+    <div class="z-avatar">🦚</div>
+    <div>
+      <div class="z-name">Zara says:</div>
+      <div class="z-text">Your teacher said to <strong>know your map!</strong> Click START, then tap the correct country when its name appears. I'll give you tips between rounds! 🗺️</div>
+    </div>
+  </div>
+
+  <div class="map-wrap">
+    <div class="map-prompt" id="mapPrompt">👆 Press Start to begin the Map Challenge!</div>
+    <svg viewBox="0 0 500 530" xmlns="http://www.w3.org/2000/svg" id="saMap" style="width:100%;height:auto;">
+      <!-- Ocean background -->
+      <rect width="500" height="530" fill="#DDEEFF" rx="12"/>
+
+      <!-- PAKISTAN -->
+      <path id="mp-Pakistan" class="map-cp" fill="#A5D6A7" stroke="#fff" stroke-width="2.5"
+        d="M75,55 L90,45 L130,42 L175,48 L210,78 L218,118 L195,152 L165,162 L138,158 L110,145 L82,130 L65,105 Z"/>
+      <text x="140" y="108" class="mct">Pakistan</text>
+
+      <!-- INDIA -->
+      <path id="mp-India" class="map-cp" fill="#90CAF9" stroke="#fff" stroke-width="2.5"
+        d="M165,162 L195,152 L218,118 L238,118 L268,122 L285,148 L295,178 L290,215 L282,255 L270,295 L255,328 L238,355 L220,370 L205,358 L195,335 L182,310 L170,282 L158,258 L148,235 L140,205 L138,178 Z"/>
+      <text x="213" y="265" class="mct">India</text>
+
+      <!-- NEPAL -->
+      <path id="mp-Nepal" class="map-cp" fill="#FFCC80" stroke="#fff" stroke-width="2.5"
+        d="M200,128 L238,118 L268,122 L280,142 L268,148 L238,148 L210,158 L196,158 L195,148 Z"/>
+      <text x="237" y="143" class="mct" style="font-size:9px">Nepal</text>
+
+      <!-- BHUTAN -->
+      <path id="mp-Bhutan" class="map-cp" fill="#CE93D8" stroke="#fff" stroke-width="2.5"
+        d="M278,115 L318,110 L322,132 L300,140 L280,142 L268,122 Z"/>
+      <text x="297" y="130" class="mct" style="font-size:9px">Bhutan</text>
+
+      <!-- BANGLADESH -->
+      <path id="mp-Bangladesh" class="map-cp" fill="#F48FB1" stroke="#fff" stroke-width="2.5"
+        d="M280,142 L300,140 L322,132 L338,152 L328,185 L312,198 L295,192 L285,175 L288,158 Z"/>
+      <text x="312" y="168" class="mct" style="font-size:9px">Bangladesh</text>
+
+      <!-- SRI LANKA -->
+      <path id="mp-SriLanka" class="map-cp" fill="#80DEEA" stroke="#fff" stroke-width="2.5"
+        d="M222,388 L238,382 L248,396 L244,420 L228,428 L215,418 L212,402 Z"/>
+      <text x="231" y="408" class="mct" style="font-size:8px">Sri Lanka</text>
+
+      <!-- MALDIVES -->
+      <circle id="mp-Maldives" class="map-cp" cx="168" cy="435" r="13" fill="#FFAB91" stroke="#fff" stroke-width="2.5"/>
+      <circle cx="166" cy="456" r="9" fill="#FFAB91" stroke="#fff" stroke-width="2"/>
+      <circle cx="164" cy="473" r="6" fill="#FFAB91" stroke="#fff" stroke-width="2"/>
+      <text x="168" y="439" class="mct" style="font-size:7.5px">Maldives</text>
+
+      <!-- Labels -->
+      <text x="250" y="500" style="fill:#89AAD4;font-size:11px;font-weight:700;text-anchor:middle;font-family:Quicksand,sans-serif;">Indian Ocean</text>
+      <text x="85" y="390" style="fill:#89AAD4;font-size:9px;font-weight:700;font-family:Quicksand,sans-serif;">Arabian Sea</text>
+      <text x="365" y="360" style="fill:#89AAD4;font-size:9px;font-weight:700;font-family:Quicksand,sans-serif;">Bay of Bengal</text>
+      <text x="460" y="42" style="fill:#666;font-size:18px;text-anchor:middle;">N</text>
+      <text x="460" y="52" style="fill:#666;font-size:12px;text-anchor:middle;">↑</text>
+    </svg>
+    <style>
+      .map-cp{cursor:pointer;transition:opacity .2s;}.map-cp:hover{opacity:.75;}
+      .mct{font-size:10px;font-weight:700;fill:#fff;text-anchor:middle;paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:3px;font-family:Quicksand,sans-serif;}
+    </style>
+    <div class="map-feedback" id="mapFB"></div>
+    <div class="map-score" id="mapScore"></div>
+    <div style="text-align:center;margin-top:.8rem;">
+      <button class="btn btn-saffron map-start-btn" id="mapStartBtn" onclick="startMap()">🗺️ Start Map Quiz!</button>
+    </div>
+  </div>
+
+  <div class="info-block orange">
+    <h3>🗒️ Memory Tips for the Map</h3>
+    <ul>
+      <li>🟢 <strong>Pakistan</strong> = upper LEFT — like the first letter P is on the left side of the keyboard</li>
+      <li>🔵 <strong>India</strong> = the BIG one in the middle — impossible to miss!</li>
+      <li>🟡 <strong>Nepal</strong> = tiny strip on TOP of India (it's sandwiched between India & China)</li>
+      <li>🟣 <strong>Bhutan</strong> = tiny, to the RIGHT of Nepal — same strip</li>
+      <li>🩷 <strong>Bangladesh</strong> = right side, tucked in — almost surrounded by India!</li>
+      <li>🩵 <strong>Sri Lanka</strong> = the teardrop island hanging below India's tip</li>
+      <li>🍑 <strong>Maldives</strong> = tiny dots WAY to the southwest — like freckles in the ocean!</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     QUIZ TAB
+════════════════════════════════════════════════ -->
+<div class="section" id="s-quiz">
+  <div id="qIntro">
+    <div class="quiz-intro-box">
+      <div style="font-size:3rem;">🏆</div>
+      <h2>Final Boss Quiz!</h2>
+      <p style="opacity:.9;margin-top:.4rem;">25 questions — multiple choice, true/false, matching &amp; drag-drop!<br>Zara believes in you! 🦚</p>
+    </div>
+    <div style="text-align:center;">
+      <button class="btn btn-indigo" onclick="startQuiz()" style="font-size:1rem;padding:.8rem 2rem;">🚀 Let's Go!</button>
+    </div>
+  </div>
+  <div id="qArea" style="display:none;">
+    <div class="qpbar"><div class="qpfill" id="qpf" style="width:0%"></div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.7rem;">
+      <span id="qctr" style="font-weight:800;color:#888;font-size:.88rem;"></span>
+      <span class="qscore" id="qscr">Score: 0</span>
+    </div>
+    <div id="qContainer"></div>
+    <div class="quiz-nav">
+      <div></div>
+      <button class="btn btn-indigo" id="qNext" onclick="nextQ()" style="display:none;">Next ➡️</button>
+    </div>
+  </div>
+  <div id="qResults" style="display:none;">
+    <div class="results-box">
+      <div id="rEmoji" style="font-size:2.5rem;letter-spacing:.5rem;margin-bottom:.5rem;"></div>
+      <div class="r-score" id="rScore"></div>
+      <div class="r-msg" id="rMsg"></div>
+      <div style="opacity:.8;font-size:.9rem;" id="rSub"></div>
+      <div class="r-breakdown" id="rBreak"></div>
+      <button class="btn btn-saffron" onclick="resetQuiz()" style="margin-top:1rem;">🔄 Try Again!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCRIPTS ══ -->
+<script>
+// ─── STARS ───
+(()=>{
+  const c=document.getElementById('heroStars');
+  for(let i=0;i<20;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const sz=Math.random()*4+2;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*2}s;animation-duration:${1.5+Math.random()*2}s;`;
+    c.appendChild(s);
+  }
+})();
+
+// ─── TABS ───
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('s-'+t.dataset.t).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+// ─── REVEAL CARDS ───
+function toggleReveal(el){
+  el.classList.toggle('open');
+}
+
+// ─── ZARA TIPS ───
+const zaraTips=[
+  "Psst! South Asia has 1/5 of all humans on Earth! 🌏",
+  "Did you study the map? You'll definitely need it! 🗺️",
+  "Monsoon rains literally keep billions of people alive! 🌧️",
+  "The Gupta Empire invented the number ZERO! 🔢",
+  "Bollywood makes 3x more movies than Hollywood! 🎬",
+  "The Maldives could disappear underwater — for real! 🌊",
+  "Mount Everest grows 5mm every single year! ⛰️",
+  "Gandhi's weapon was PEACE — and it worked! 🕊️",
+  "Sri Lanka has sapphires AND rubies! 💎",
+  "India outlawed the caste system in 1947! ⚖️",
+];
+let zaraIdx=0;
+function zaraSpeak(){
+  const b=document.getElementById('zaraBubble');
+  b.textContent=zaraTips[zaraIdx%zaraTips.length];
+  b.classList.add('visible');
+  zaraIdx++;
+  clearTimeout(window.zaraTimer);
+  window.zaraTimer=setTimeout(()=>b.classList.remove('visible'),4000);
+}
+setTimeout(zaraSpeak,2000);
+setInterval(zaraSpeak,15000);
+
+// ─── COUNTRY DATA ───
+const countries=[
+  {flag:'🇧🇩',name:'Bangladesh',cap:'Dhaka',pop:'173M',lang:'Bangla',color:'#006A4E',light:'#E8F5EF',fact:'Bangladesh has more people than Russia — in a country smaller than Georgia!',cool:'🌊 It sits on the world\'s largest delta!'},
+  {flag:'🇧🇹',name:'Bhutan',cap:'Thimphu',pop:'791K',lang:'Dzongkha',color:'#FF8000',light:'#FFF3E0',fact:'Bhutan measures success by "Gross National Happiness" — not money!',cool:'🏔️ One of the least visited countries in the world!'},
+  {flag:'🇮🇳',name:'India',cap:'New Delhi',pop:'1.45B 🏆',lang:'Hindi & English',color:'#FF9933',light:'#FFF3E0',fact:'India has 22 officially recognised languages and hundreds of dialects!',cool:'🔢 Indians invented the number system you use in math class!'},
+  {flag:'🇲🇻',name:'Maldives',cap:'Malé',pop:'527K',lang:'Dhivehi',color:'#D21034',light:'#FFF0F3',fact:'The Maldives is the flattest country on Earth — highest point is just 2.4m!',cool:'🐠 Its coral reefs are some of the most beautiful in the world!'},
+  {flag:'🇳🇵',name:'Nepal',cap:'Kathmandu',pop:'29M',lang:'Nepali',color:'#003893',light:'#EEF2FF',fact:'Nepal\'s flag is the only national flag that is NOT rectangular — it\'s two triangles!',cool:'🏔️ Home to 8 of the world\'s 10 tallest mountains!'},
+  {flag:'🇵🇰',name:'Pakistan',cap:'Islamabad',pop:'251M',lang:'Urdu & English',color:'#01411C',light:'#E8F5E9',fact:'Pakistan was formed in 1947 as a home for South Asian Muslims.',cool:'🌟 The ancient city of Mohenjo-Daro is in Pakistan!'},
+  {flag:'🇱🇰',name:'Sri Lanka',cap:'Colombo',pop:'23M',lang:'Sinhalese',color:'#8D153A',light:'#FFF0F5',fact:'Sri Lanka is shaped like a teardrop and sometimes called "The Pearl of the Indian Ocean."',cool:'💎 Major exporter of sapphires, rubies, and tea!'},
+];
+
+const cGrid=document.getElementById('countryGrid');
+countries.forEach((c,i)=>{
+  const d=document.createElement('div');
+  d.className='c-card';
+  d.style.cssText=`background:${c.light};border-top:5px solid ${c.color};`;
+  d.innerHTML=`
+    <span class="flag">${c.flag}</span>
+    <h3 style="color:${c.color}">${c.name}</h3>
+    <div class="cap" style="color:${c.color}">🏛️ ${c.cap}</div>
+    <div class="pop">👥 ${c.pop} &nbsp;|&nbsp; 🗣️ ${c.lang}</div>
+    <div class="c-detail">
+      <div style="margin-top:.3rem;">📌 <strong>${c.fact}</strong></div>
+      <div style="margin-top:.3rem;">✨ ${c.cool}</div>
+    </div>
+    <div class="tap-hint">tap to learn more →</div>`;
+  d.addEventListener('click',()=>d.classList.toggle('open'));
+  cGrid.appendChild(d);
+});
+
+// ─── POP BARS ───
+const popData=[
+  {c:'India',v:1450,col:'#FF9933',lbl:'1.45B'},
+  {c:'Pakistan',v:251,col:'#01411C',lbl:'251M'},
+  {c:'Bangladesh',v:173,col:'#006A4E',lbl:'173M'},
+  {c:'Nepal',v:29,col:'#003893',lbl:'29M'},
+  {c:'Sri Lanka',v:23,col:'#8D153A',lbl:'23M'},
+  {c:'Bhutan',v:.79,col:'#FF8000',lbl:'791K'},
+  {c:'Maldives',v:.53,col:'#D21034',lbl:'527K'},
+];
+const pb=document.getElementById('popBars');
+popData.forEach(d=>{
+  const pct=Math.max(1.5,Math.round(d.v/1450*100));
+  pb.innerHTML+=`<div class="pb-row">
+    <div class="pb-lbl">${d.c}</div>
+    <div class="pb-track"><div class="pb-fill" style="width:0%;background:${d.col}" data-w="${pct}"></div></div>
+    <div class="pb-num">${d.lbl}</div></div>`;
+});
+setTimeout(()=>{
+  document.querySelectorAll('.pb-fill').forEach(el=>el.style.width=el.dataset.w+'%');
+},400);
+
+// ─── CLIMATE CHARACTERS ───
+const climates=[
+  {icon:'🌴',name:'Tropical Tim',color:'#00BFA5',bg:'#E0F7FA',desc:'Hi! I cover HALF of South Asia! I\'m warm, humid, and kinda sweaty 😅. Coastal cities like Mumbai deal with me every day. Some places with me get 90+ INCHES of rain a year!'},
+  {icon:'🌧️',name:'Monsoon Mia',color:'#1565C0',bg:'#E3F2FD',desc:'I\'m the seasonal wind that brings HEAVY rain for months — usually June to September! Farmers DEPEND on me for their crops. Too little of me? Drought. Too much? Floods. I literally decide if people eat! 😮'},
+  {icon:'🌀',name:'Cyclone Cass',color:'#6A1B9A',bg:'#F3E5F5',desc:'I\'m a massive swirling storm with howling winds and pounding rain. I mostly hit coastal areas like Bangladesh and eastern India. I can be very dangerous, but scientists now track me with satellites to warn people ahead of time! 🛰️'},
+  {icon:'🏜️',name:'Desert Dana',color:'#E65100',bg:'#FFF3E0',desc:'I live in the Thar Desert (Pakistan/India border). I am DRY. Super dry. Barely any rain at all! Yet millions of people and camels somehow live in me. The desert blooms briefly when rain does come — it\'s magical! 🌸'},
+  {icon:'❄️',name:'Mountain Max',color:'#37474F',bg:'#ECEFF1',desc:'I sit high in the Himalaya. Always snowy. Always cold. But I serve a BIG purpose — I block freezing Arctic winds from blasting into South Asia! So the valleys stay warm and mild because of my cold mountains. I\'m a weather shield! 🛡️'},
+];
+const cc=document.getElementById('climateChars');
+climates.forEach(cl=>{
+  cc.innerHTML+=`
+  <div style="background:${cl.bg};border-radius:16px;padding:1.1rem;margin-bottom:.8rem;border-left:5px solid ${cl.color};display:flex;gap:1rem;align-items:flex-start;cursor:pointer;" onclick="this.querySelector('.cl-body').style.display=this.querySelector('.cl-body').style.display==='none'?'block':'none'">
+    <div style="font-size:2.5rem;flex-shrink:0;">${cl.icon}</div>
+    <div style="flex:1;">
+      <div style="font-family:'Fredoka One',cursive;font-size:1.05rem;color:${cl.color};">${cl.name}</div>
+      <div style="font-size:.72rem;color:#aaa;font-weight:700;">tap to hear from me!</div>
+      <div class="cl-body" style="display:none;margin-top:.5rem;font-size:.87rem;font-weight:600;color:#444;line-height:1.5;">${cl.desc}</div>
+    </div>
+  </div>`;
+});
+
+// ─── WEATHER MATCHING GAME ───
+const wTerms=['Monsoon','Cyclone','Atoll','Delta','Alluvial Plain'];
+const wDefs=[
+  'Seasonal winds bringing months of heavy rain',
+  'Massive spinning storm with high winds near coast',
+  'Ring-shaped coral island with a lagoon inside',
+  'Fan-shaped land at a river mouth where soil is dropped',
+  'Flat, fertile land along a river created by soil deposits'
+];
+// Map term index -> correct def index (after shuffle we use data attributes)
+let wSelTIdx=null, wSelDIdx=null, wMatched=0, wShufOrder=[];
+
+function initWeatherGame(){
+  wMatched=0; wSelTIdx=null; wSelDIdx=null;
+  // shuffle def indices
+  wShufOrder=[0,1,2,3,4].sort(()=>Math.random()-.5);
+  const g=document.getElementById('weatherGame');
+  g.innerHTML='';
+  const wrap=document.createElement('div');
+  wrap.style.cssText='display:flex;gap:.8rem;flex-wrap:wrap;';
+
+  // Terms column
+  const tc=document.createElement('div');
+  tc.style.cssText='flex:1;min-width:120px;';
+  tc.innerHTML='<div style="font-size:.78rem;font-weight:800;color:rgba(255,255,255,.6);margin-bottom:.4rem;">TERM</div>';
+  wTerms.forEach((t,i)=>{
+    const el=document.createElement('div');
+    el.className='match-item term';
+    el.id='wt-'+i;
+    el.dataset.termIdx=i;
+    el.style.marginBottom='.45rem';
+    el.textContent=t;
+    el.addEventListener('click',()=>wClickTerm(i));
+    tc.appendChild(el);
+  });
+
+  // Defs column (shuffled)
+  const dc=document.createElement('div');
+  dc.style.cssText='flex:1;min-width:120px;';
+  dc.innerHTML='<div style="font-size:.78rem;font-weight:800;color:rgba(255,255,255,.6);margin-bottom:.4rem;">DEFINITION</div>';
+  wShufOrder.forEach((defIdx,slotIdx)=>{
+    const el=document.createElement('div');
+    el.className='match-item def';
+    el.id='wd-'+slotIdx;
+    el.dataset.defIdx=defIdx;
+    el.style.marginBottom='.45rem';
+    el.textContent=wDefs[defIdx];
+    el.addEventListener('click',()=>wClickDef(slotIdx));
+    dc.appendChild(el);
+  });
+
+  wrap.appendChild(tc);
+  wrap.appendChild(dc);
+  g.appendChild(wrap);
+  document.getElementById('weatherResult').innerHTML='';
+}
+
+function wClickTerm(termIdx){
+  const el=document.getElementById('wt-'+termIdx);
+  if(el.classList.contains('mc-ok'))return;
+  document.querySelectorAll('#weatherGame .match-item.term').forEach(e=>e.classList.remove('sel-t'));
+  el.classList.add('sel-t');
+  wSelTIdx=termIdx;
+  if(wSelDIdx!==null) wAttemptMatch();
+}
+function wClickDef(slotIdx){
+  const el=document.getElementById('wd-'+slotIdx);
+  if(el.classList.contains('mc-ok'))return;
+  document.querySelectorAll('#weatherGame .match-item.def').forEach(e=>e.classList.remove('sel-d'));
+  el.classList.add('sel-d');
+  wSelDIdx=slotIdx;
+  if(wSelTIdx!==null) wAttemptMatch();
+}
+function wAttemptMatch(){
+  const tIdx=wSelTIdx, sIdx=wSelDIdx;
+  const tEl=document.getElementById('wt-'+tIdx);
+  const dEl=document.getElementById('wd-'+sIdx);
+  // correct if the def's original index equals the term index
+  const defOrigIdx=parseInt(dEl.dataset.defIdx);
+  if(defOrigIdx===tIdx){
+    tEl.classList.remove('sel-t'); tEl.classList.add('mc-ok');
+    dEl.classList.remove('sel-d'); dEl.classList.add('mc-ok');
+    wMatched++;
+    if(wMatched===5) document.getElementById('weatherResult').innerHTML='🎉 <span style="color:#FFD166">All matched! You\'re a weather expert!</span>';
+  } else {
+    tEl.classList.remove('sel-t'); dEl.classList.remove('sel-d');
+    tEl.classList.add('mc-bad'); dEl.classList.add('mc-bad');
+    setTimeout(()=>{tEl.classList.remove('mc-bad'); dEl.classList.remove('mc-bad');},500);
+  }
+  wSelTIdx=null; wSelDIdx=null;
+}
+initWeatherGame();
+
+// ─── TIMELINE DATA ───
+const tlData=[
+  {yr:'3500 B.C.',title:'🏛️ Indus Valley Civilization Begins',color:'#FF6B35',
+   body:'Two major cities: <strong>Harappa</strong> and <strong>Mohenjo-Daro</strong> — in present-day Pakistan! These weren\'t rough settlements. They had straight PLANNED streets, brick houses, indoor wells, and bathrooms with drainage systems... in 3500 BC! Meanwhile, most of the world lived in mud huts. They were SO advanced we still can\'t fully read their writing system today! 🤯'},
+  {yr:'1500 B.C.',title:'⚖️ Aryans Arrive — The Caste System',color:'#E91E63',
+   body:'Aryans migrated from Central Asia and created the <strong>caste system</strong> — a social ranking you were BORN into and couldn\'t escape. 4 groups: Priests & Teachers (top), Warriors & Rulers, Merchants & Traders, Laborers & Peasants (bottom). They also wrote the <strong>Vedas</strong> — sacred Hindu texts in Sanskrit. India officially outlawed caste discrimination in <strong>1947</strong> — though its effects still exist today.'},
+  {yr:'300s B.C.',title:'🕊️ The Maurya Empire & Emperor Ashoka',color:'#9B59B6',
+   body:'The Mauryas conquered much of South Asia. Emperor <strong>Ashoka</strong> started as a brutal warrior who won bloody battles. Then, after one particularly horrifying war, he looked at all the death he caused and had a change of heart. He became Buddhist, promoted peace, built hospitals and roads, and carved his laws on rocks and pillars so everyone could read them. One of history\'s most remarkable turnarounds! 🔄'},
+  {yr:'A.D. 300s-500s',title:'🔢 Gupta Empire — The Golden Age',color:'#00897B',
+   body:'Led by <strong>Chandragupta I</strong> — arts, science and mathematics FLOURISHED. Gupta scholars:<br>✅ Developed the <strong>decimal number system</strong> (0-9) — the one you use in EVERY math class!<br>✅ Calculated the approximate value of Pi<br>✅ Created chess<br>✅ Wrote incredible literature<br>Basically, they were the Renaissance before the Renaissance!'},
+  {yr:'1500s-1600s',title:'🕌 Mughal Empire — Akbar & the Taj Mahal',color:'#F57C00',
+   body:'Muslim rulers who became the first non-Hindu emperors of India. <strong>Akbar the Great</strong> (1556-1605) was remarkable — he allowed religious freedom, married women from different faiths, and invited scholars from everywhere. The famous <strong>Taj Mahal</strong> was built by the 5th emperor <strong>Shah Jahan</strong> in 1631 as a tomb for his beloved wife Mumtaz. It took 22 years and 20,000 workers! 💍'},
+  {yr:'1600s-1947',title:'🇬🇧 British Colonial Rule',color:'#1565C0',
+   body:'Britain slowly took control of India over 200 years. By 1900, the British Empire controlled the whole subcontinent! In 1885 Indians formed the <strong>Indian National Congress</strong> to fight back. Then came <strong>Mahatma Gandhi</strong> — who refused to fight with weapons. Instead, he used peaceful marches, hunger strikes, and <strong>boycotts</strong> (refusing to buy British goods). This non-violent resistance eventually forced the British to leave. India gained independence <strong>August 15, 1947!</strong> 🇮🇳'},
+  {yr:'1947 — Partition',title:'✂️ The Birth of India & Pakistan',color:'#C62828',
+   body:'When the British left, they divided the region into TWO countries along religious lines: <strong>India</strong> (mostly Hindu) and <strong>Pakistan</strong> (mostly Muslim). This "Partition" was MESSY — 15 million people had to move suddenly, and hundreds of thousands died in violence. East Pakistan later became <strong>Bangladesh</strong> in the 1970s after its own independence war from Pakistan. Three countries born from one!'},
+];
+const tlWrap=document.getElementById('timeline');
+tlData.forEach((t,i)=>{
+  const d=document.createElement('div');
+  d.className='tl-entry';
+  d.innerHTML=`
+    <div class="tl-dot" style="background:${t.color};box-shadow:0 0 0 2px ${t.color};"></div>
+    <div class="tl-card" style="border-left-color:${t.color};" onclick="this.classList.toggle('open')">
+      <div class="tl-year" style="color:${t.color}">${t.yr}</div>
+      <div class="tl-title">${t.title}</div>
+      <div class="tl-hint">tap to read the story 👆</div>
+      <div class="tl-body">${t.body}</div>
+    </div>`;
+  tlWrap.appendChild(d);
+});
+
+// ─── WHO AM I GAME ───
+const whoData=[
+  {
+    clues:['I became one of the most powerful rulers in South Asia','I started my life as a fierce and successful warrior','I looked at the destruction from one of my battles and was filled with grief','I converted to Buddhism and devoted my life to peace','I promoted trade, built hospitals, and carved laws on pillars so everyone could read them'],
+    opts:['Emperor Ashoka','Shah Jahan','Akbar the Great','Chandragupta I'],correct:0,
+    explain:'Emperor Ashoka of the Maurya Empire! His transformation from warlord to peaceful ruler is one of history\'s most amazing stories. 🕊️'
+  },
+  {
+    clues:['I was a Muslim ruler in India','I ruled from 1556 to 1605','Unlike other rulers of my time, I encouraged religious freedom','I invited scholars from different religions to my court','People called me "The Great"'],
+    opts:['Shah Jahan','Ashoka','Akbar the Great','Gandhi'],correct:2,
+    explain:'Akbar the Great! He was the 3rd Mughal emperor and one of the most open-minded rulers in history. 🌟'
+  },
+  {
+    clues:['I was born in 1869 in India','I used NO weapons in my fight','I led marches, hunger strikes, and boycotts','The British eventually listened to me','I helped India gain independence in 1947'],
+    opts:['Nehru','Akbar the Great','Shah Jahan','Mahatma Gandhi'],correct:3,
+    explain:'Mahatma Gandhi! His weapon was peace — and it changed the world. He proved that non-violence can win against empires! 🕊️'
+  },
+];
+let whoIdx=0,whoRevCount=0,whoAnswered=false;
+function renderWho(){
+  const w=whoData[whoIdx];
+  whoRevCount=0;whoAnswered=false;
+  document.getElementById('whoGame').innerHTML=`
+    <div style="font-size:.85rem;opacity:.7;margin-bottom:.5rem;">Puzzle ${whoIdx+1} of ${whoData.length}</div>
+    <div class="who-clues">
+      ${w.clues.map((c,i)=>`<div class="clue" id="wc-${i}" onclick="revealClue(${i})">
+        <span class="clue-num">${i+1}</span>
+        <span class="clue-text">${c}</span>
+        <span class="clue-hint" style="${i===0?'':'display:none'}"></span>
+      </div>`).join('')}
+    </div>
+    <div style="margin-top:.8rem;font-size:.85rem;font-weight:700;opacity:.7;">Click clues one by one, then guess!</div>
+    <div class="who-input" id="whoOpts">
+      ${w.opts.map((o,i)=>`<button class="who-opt" onclick="guessWho(${i})">${o}</button>`).join('')}
+    </div>
+    <div class="who-answer" id="whoAns"></div>
+    ${whoIdx<whoData.length-1?`<button class="btn btn-teal" onclick="nextWho()" style="margin-top:.8rem;display:none;" id="whoNext">Next Puzzle ➡️</button>`:''}`;
+  revealClue(0);
+}
+function revealClue(i){
+  const el=document.getElementById('wc-'+i);
+  if(!el||el.classList.contains('revealed'))return;
+  el.classList.add('revealed');
+  whoRevCount++;
+  if(i<whoData[whoIdx].clues.length-1){
+    const next=document.getElementById('wc-'+(i+1));
+    if(next){next.querySelector('.clue-hint').style.display='';next.querySelector('.clue-hint').textContent='👆 tap to reveal';}
+  }
+}
+function guessWho(i){
+  if(whoAnswered)return;
+  whoAnswered=true;
+  const w=whoData[whoIdx];
+  document.querySelectorAll('.who-opt').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.who-opt')[i].classList.add(i===w.correct?'correct':'wrong');
+  if(i!==w.correct)document.querySelectorAll('.who-opt')[w.correct].classList.add('correct');
+  const ans=document.getElementById('whoAns');
+  ans.innerHTML=`<strong>${i===w.correct?'✅ Correct!':'❌ Not quite!'}</strong><br>${w.explain}`;
+  ans.classList.add('visible');
+  const nb=document.getElementById('whoNext');
+  if(nb)nb.style.display='inline-block';
+  // reveal all clues
+  w.clues.forEach((_,ci)=>revealClue(ci));
+}
+function nextWho(){whoIdx++;renderWho();}
+renderWho();
+
+// ─── RELIGIONS ───
+const relData=[
+  {icon:'🕉️',name:'Hinduism',color:'#E65100',bg:'#FFF3E0',
+   detail:'The OLDEST religion in South Asia (over 4,000 years old!). Main faith in India and Nepal. Believes in reincarnation — that your soul is reborn after death. The Ganges River is sacred for bathing and ceremonies. Has thousands of deities but many see them as different forms of one supreme being. 🌸'},
+  {icon:'☪️',name:'Islam',color:'#1565C0',bg:'#E3F2FD',
+   detail:'Major religion in Pakistan and Bangladesh. Muslims believe in Allah and follow the Prophet Muhammad\'s teachings. The Mughal emperors who built the Taj Mahal were Muslim. Islam came to South Asia through trade routes and conquests starting around A.D. 700. 🌙'},
+  {icon:'☸️',name:'Buddhism',color:'#6A1B9A',bg:'#F3E5F5',
+   detail:'Founded in India by <strong>Siddhartha Gautama</strong> — a prince who gave up his palace life to understand suffering. He meditated under a fig tree for 49 days and reached enlightenment (nirvana). His teachings: reduce desire, follow the Middle Way, be compassionate. Emperor Ashoka helped spread Buddhism across Asia! 🧘'},
+  {icon:'🟢',name:'Sikhism',color:'#2E7D32',bg:'#E8F5E9',
+   detail:'Started in the Punjab region about 500 years ago. Founded by Guru Nanak. Teaches equality of ALL people — no caste discrimination! Believes in one God. Sikhs are recognizable by their turbans (Sikh men don\'t cut their hair as a sign of faith). Known for incredible langar — free community kitchens that feed anyone! 🥘'},
+  {icon:'✝️',name:'Christianity',color:'#1A237E',bg:'#E8EAF6',
+   detail:'Introduced to India by the Apostle Thomas in the 1st century AD — yes, that\'s the same Thomas from the Bible! He sailed to the coast of present-day Kerala. So India has had Christians for nearly 2,000 years! There are about 28 million Christians in India today. 🙏'},
+  {icon:'🌀',name:'Jainism',color:'#00695C',bg:'#E0F2F1',
+   detail:'One of the world\'s oldest religions, also started in India! Core belief: non-violence (ahimsa) to ALL living things. Strict Jains won\'t eat meat, won\'t eat root vegetables (pulling them up kills the plant), and some wear masks so they don\'t accidentally inhale insects! Their philosophy actually influenced Gandhi\'s non-violence movement. 🌿'},
+];
+const rg=document.getElementById('relGrid');
+relData.forEach((r,i)=>{
+  const d=document.createElement('div');
+  d.className='rel-pill';
+  d.style.cssText=`background:${r.color};`;
+  d.innerHTML=`<span class="rel-icon">${r.icon}</span><h4>${r.name}</h4>`;
+  d.addEventListener('click',()=>{
+    rg.querySelectorAll('.rel-pill').forEach(p=>p.style.opacity='0.7');
+    d.style.opacity='1';
+    const box=document.getElementById('relDetail');
+    box.innerHTML=`<div style="display:flex;gap:.8rem;align-items:flex-start;"><div style="font-size:2.5rem;">${r.icon}</div><div><div style="font-family:'Fredoka One',cursive;font-size:1.1rem;color:${r.color};margin-bottom:.4rem;">${r.name}</div><div style="font-size:.88rem;font-weight:600;line-height:1.55;">${r.detail}</div></div></div>`;
+    box.style.borderLeftColor=r.color;
+    box.classList.add('visible');
+  });
+  rg.appendChild(d);
+});
+
+// ─── LANGUAGE SORTING ───
+const langItems=[
+  {text:'Bangla',bin:'Bangladesh'},{text:'Dzongkha',bin:'Bhutan'},
+  {text:'Hindi',bin:'India'},{text:'Dhivehi',bin:'Maldives'},
+  {text:'Nepali',bin:'Nepal'},{text:'Urdu',bin:'Pakistan'},{text:'Sinhalese',bin:'Sri Lanka'},
+];
+const langBinDefs=['Bangladesh','Bhutan','India','Maldives','Nepal','Pakistan','Sri Lanka'];
+let langBinState={};
+function initLangSort(){
+  langBinState={};langBinDefs.forEach(b=>langBinState[b]=[]);
+  const pool=document.getElementById('langPool');
+  const bins=document.getElementById('langBins');
+  const shuffled=[...langItems].sort(()=>Math.random()-.5);
+  pool.innerHTML=shuffled.map(l=>`<div class="sort-chip" draggable="true" data-item="${l.text}" data-bin="${l.bin}" ondragstart="lDragStart(event)" ontouchstart="lTouchStart(event)" ontouchmove="lTouchMove(event)" ontouchend="lTouchEnd(event)">${l.text}</div>`).join('');
+  bins.innerHTML=langBinDefs.map((b,i)=>`<div class="sort-bin" id="lb-${i}" data-lbl="${b}" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="lDrop(event,${i})"><h4>🇺🇳 ${b}</h4><div class="drag-items" id="lbi-${i}"></div></div>`).join('');
+}
+let lDragEl=null,lTEl=null,lTClone=null;
+function lDragStart(e){lDragEl=e.target;}
+function lDrop(e,bi){
+  e.preventDefault();
+  const bin=document.getElementById('lb-'+bi);
+  bin.classList.remove('dragover');
+  if(!lDragEl)return;
+  const item=lDragEl.dataset.item,binLbl=bin.dataset.lbl;
+  lDragEl.parentNode.removeChild(lDragEl);
+  addToBin(bi,item,binLbl);lDragEl=null;
+}
+function lTouchStart(e){lTEl=e.target.closest('.sort-chip');if(!lTEl)return;lTClone=lTEl.cloneNode(true);lTClone.style.cssText='position:fixed;opacity:.7;pointer-events:none;z-index:9999;';document.body.appendChild(lTClone);const t=e.touches[0];lTClone.style.left=(t.clientX-40)+'px';lTClone.style.top=(t.clientY-16)+'px';}
+function lTouchMove(e){if(!lTClone)return;e.preventDefault();const t=e.touches[0];lTClone.style.left=(t.clientX-40)+'px';lTClone.style.top=(t.clientY-16)+'px';document.querySelectorAll('.sort-bin').forEach(b=>b.classList.remove('dragover'));const el=document.elementFromPoint(t.clientX,t.clientY);const bin=el?el.closest('.sort-bin'):null;if(bin)bin.classList.add('dragover');}
+function lTouchEnd(e){if(!lTClone||!lTEl)return;const t=e.changedTouches[0];document.querySelectorAll('.sort-bin').forEach(b=>b.classList.remove('dragover'));const el=document.elementFromPoint(t.clientX,t.clientY);const bin=el?el.closest('.sort-bin'):null;if(bin){const bi=bin.id.split('-')[1],binLbl=bin.dataset.lbl,item=lTEl.dataset.item;lTEl.parentNode.removeChild(lTEl);addToBin(bi,item,binLbl);}document.body.removeChild(lTClone);lTClone=null;lTEl=null;}
+function addToBin(bi,item,binLbl){
+  const bItems=document.getElementById('lbi-'+bi);
+  const chip=document.createElement('div');
+  chip.className='sort-chip';chip.dataset.item=item;chip.draggable=true;
+  const span=document.createElement('span');span.textContent=item+' ';
+  const btn=document.createElement('button');btn.className='rm';btn.textContent='✕';
+  btn.addEventListener('click',()=>returnLangToPool(btn,item));
+  chip.appendChild(span);chip.appendChild(btn);
+  chip.addEventListener('dragstart',lDragStart);
+  chip.addEventListener('touchstart',lTouchStart);chip.addEventListener('touchmove',lTouchMove);chip.addEventListener('touchend',lTouchEnd);
+  bItems.appendChild(chip);
+  if(!langBinState[binLbl])langBinState[binLbl]=[];
+  langBinState[binLbl].push(item);
+}
+function returnLangToPool(btn,item){
+  const chip=btn.closest('.sort-chip');
+  const bin=chip.closest('.sort-bin');
+  const lbl=bin.dataset.lbl;
+  chip.parentNode.removeChild(chip);
+  if(langBinState[lbl])langBinState[lbl]=langBinState[lbl].filter(i=>i!==item);
+  const pool=document.getElementById('langPool');
+  const nc=document.createElement('div');nc.className='sort-chip';nc.dataset.item=item;nc.draggable=true;
+  nc.innerHTML=item;nc.addEventListener('dragstart',lDragStart);nc.addEventListener('touchstart',lTouchStart);nc.addEventListener('touchmove',lTouchMove);nc.addEventListener('touchend',lTouchEnd);
+  pool.appendChild(nc);
+}
+function checkLangSort(){
+  let allOk=true;
+  langItems.forEach(l=>{
+    const placed=langBinState[l.bin]||[];
+    if(!placed.includes(l.text))allOk=false;
+  });
+  // Check no wrong placements
+  langBinDefs.forEach(b=>{
+    const placed=langBinState[b]||[];
+    placed.forEach(item=>{
+      const correct=langItems.find(l=>l.text===item);
+      if(!correct||correct.bin!==b)allOk=false;
+    });
+  });
+  const res=document.getElementById('langResult');
+  res.innerHTML=allOk?'🎉 Perfect! You matched all languages correctly!':'❌ Some are wrong. Check again — think about each country!';
+  res.style.color=allOk?'#FFD166':'#FF6B6B';
+}
+function resetLangSort(){document.getElementById('langResult').innerHTML='';initLangSort();}
+initLangSort();
+
+// ─── RESOURCE SORTING ───
+const resItems=[
+  {text:'Iron ore 🪨',bin:'India'},{text:'Mica ⚡',bin:'India'},
+  {text:'Sapphires 💎',bin:'Sri Lanka'},{text:'Rubies 💎',bin:'Sri Lanka'},
+  {text:'Petroleum 🛢️',bin:'Pakistan'},{text:'Natural Gas 🔥',bin:'Bangladesh'},
+];
+const resBinDefs=['India','Sri Lanka','Pakistan','Bangladesh'];
+let resBinState={};
+function initResSort(){
+  resBinState={};resBinDefs.forEach(b=>resBinState[b]=[]);
+  const pool=document.getElementById('resPool');
+  const bins=document.getElementById('resBins');
+  const shuffled=[...resItems].sort(()=>Math.random()-.5);
+  pool.innerHTML=shuffled.map(r=>`<div class="sort-chip" draggable="true" data-item="${r.text}" data-bin="${r.bin}" ondragstart="rDragStart(event)" ontouchstart="rTouchStart(event)" ontouchmove="rTouchMove(event)" ontouchend="rTouchEnd(event)">${r.text}</div>`).join('');
+  bins.innerHTML=resBinDefs.map((b,i)=>`<div class="sort-bin" id="rb-${i}" data-lbl="${b}" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="rDrop(event,${i})"><h4>${b}</h4><div class="drag-items" id="rbi-${i}"></div></div>`).join('');
+}
+let rDragEl=null,rTEl=null,rTClone=null;
+function rDragStart(e){rDragEl=e.target;}
+function rDrop(e,bi){e.preventDefault();const bin=document.getElementById('rb-'+bi);bin.classList.remove('dragover');if(!rDragEl)return;const item=rDragEl.dataset.item,lbl=bin.dataset.lbl;rDragEl.parentNode.removeChild(rDragEl);addResToBin(bi,item,lbl);rDragEl=null;}
+function rTouchStart(e){rTEl=e.target.closest('.sort-chip');if(!rTEl)return;rTClone=rTEl.cloneNode(true);rTClone.style.cssText='position:fixed;opacity:.7;pointer-events:none;z-index:9999;';document.body.appendChild(rTClone);const t=e.touches[0];rTClone.style.left=(t.clientX-40)+'px';rTClone.style.top=(t.clientY-16)+'px';}
+function rTouchMove(e){if(!rTClone)return;e.preventDefault();const t=e.touches[0];rTClone.style.left=(t.clientX-40)+'px';rTClone.style.top=(t.clientY-16)+'px';document.querySelectorAll('.sort-bin').forEach(b=>b.classList.remove('dragover'));const el=document.elementFromPoint(t.clientX,t.clientY);const bin=el?el.closest('.sort-bin'):null;if(bin)bin.classList.add('dragover');}
+function rTouchEnd(e){if(!rTClone||!rTEl)return;const t=e.changedTouches[0];document.querySelectorAll('.sort-bin').forEach(b=>b.classList.remove('dragover'));const el=document.elementFromPoint(t.clientX,t.clientY);const bin=el?el.closest('.sort-bin'):null;if(bin){const bi=bin.id.split('-')[1],lbl=bin.dataset.lbl,item=rTEl.dataset.item;rTEl.parentNode.removeChild(rTEl);addResToBin(bi,item,lbl);}document.body.removeChild(rTClone);rTClone=null;rTEl=null;}
+function addResToBin(bi,item,lbl){
+  const bItems=document.getElementById('rbi-'+bi);
+  const chip=document.createElement('div');chip.className='sort-chip';chip.dataset.item=item;chip.draggable=true;
+  const span=document.createElement('span');span.textContent=item+' ';
+  const btn=document.createElement('button');btn.className='rm';btn.textContent='✕';
+  btn.addEventListener('click',()=>returnResToPool(btn,item));
+  chip.appendChild(span);chip.appendChild(btn);
+  chip.addEventListener('dragstart',rDragStart);chip.addEventListener('touchstart',rTouchStart);chip.addEventListener('touchmove',rTouchMove);chip.addEventListener('touchend',rTouchEnd);
+  bItems.appendChild(chip);
+  if(!resBinState[lbl])resBinState[lbl]=[];resBinState[lbl].push(item);
+}
+function returnResToPool(btn,item){
+  const chip=btn.closest('.sort-chip');const bin=chip.closest('.sort-bin');const lbl=bin.dataset.lbl;
+  chip.parentNode.removeChild(chip);
+  if(resBinState[lbl])resBinState[lbl]=resBinState[lbl].filter(i=>i!==item);
+  const pool=document.getElementById('resPool');
+  const nc=document.createElement('div');nc.className='sort-chip';nc.dataset.item=item;nc.draggable=true;
+  nc.innerHTML=item;nc.addEventListener('dragstart',rDragStart);nc.addEventListener('touchstart',rTouchStart);nc.addEventListener('touchmove',rTouchMove);nc.addEventListener('touchend',rTouchEnd);
+  pool.appendChild(nc);
+}
+function checkResSort(){
+  let allOk=true;
+  resItems.forEach(r=>{
+    const placed=resBinState[r.bin]||[];
+    if(!placed.includes(r.text))allOk=false;
+  });
+  resBinDefs.forEach(b=>{
+    (resBinState[b]||[]).forEach(item=>{
+      const correct=resItems.find(r=>r.text===item);
+      if(!correct||correct.bin!==b)allOk=false;
+    });
+  });
+  const res=document.getElementById('resResult');
+  res.innerHTML=allOk?'💎 Brilliant! You know your resources!':'❌ Some placements are off. Try again!';
+  res.style.color=allOk?'#FFD166':'#FF6B6B';
+}
+function resetResSort(){document.getElementById('resResult').innerHTML='';initResSort();}
+initResSort();
+
+// ─── VOCAB ───
+const vocab=[
+  {t:'Subcontinent',d:'A large landmass that is part of a continent. South Asia is one — like a peninsula that broke off and floated into Asia!'},
+  {t:'Delta',d:'Where a river meets the sea and drops all its soil — forming a fan-shaped low area. Bangladesh sits on a massive one!'},
+  {t:'Atoll',d:'A ring-shaped island made of coral with a peaceful lagoon in the middle. The Maldives is full of atolls!'},
+  {t:'Monsoon',d:'A seasonal wind pattern that brings heavy rains for several months. Billions of people depend on monsoon rains for farming!'},
+  {t:'Cyclone',d:'A giant storm with spinning high winds and heavy rain. Like a hurricane — hits coastal South Asia.'},
+  {t:'Reincarnation',d:'The belief (in Hinduism/Buddhism) that after death, your soul is reborn into a new body. You\'ve lived before... maybe! 👀'},
+  {t:'Boycott',d:'Refusing to buy goods from a country or company to protest. Gandhi used boycotts to fight British rule!'},
+  {t:'Outsourcing',d:'Hiring workers in other countries to do work. US tech companies hire Indian workers because of lower costs and strong English skills.'},
+  {t:'Sitar',d:'A long-necked stringed instrument from India with 18-21 strings. Makes a beautiful, twangy sound central to Indian classical music!'},
+  {t:'Caste',d:'A social class you\'re born into that you traditionally can\'t change. Created by Aryans in 1500 BC. India outlawed it in 1947.'},
+  {t:'Alluvial Plain',d:'Super fertile flat land created by river deposits over thousands of years. The Ganges creates the world\'s longest one!'},
+  {t:'Civil Disobedience',d:'Peacefully breaking unjust laws to protest them. Gandhi\'s main strategy — marches, fasting, refusing to obey British rules.'},
+];
+const vg=document.getElementById('vocabGrid');
+vocab.forEach(v=>{
+  vg.innerHTML+=`<div class="v-card" onclick="this.classList.toggle('flipped')">
+    <div class="v-inner">
+      <div class="v-front"><div class="vt">${v.t}</div><div class="vh">👆 Tap to reveal</div></div>
+      <div class="v-back"><div class="vd">${v.d}</div></div>
+    </div></div>`;
+});
+
+// ─── MAP QUIZ ───
+const mapC=['Pakistan','India','Nepal','Bhutan','Bangladesh','SriLanka','Maldives'];
+const mapL={Pakistan:'Pakistan',India:'India',Nepal:'Nepal',Bhutan:'Bhutan',Bangladesh:'Bangladesh',SriLanka:'Sri Lanka',Maldives:'Maldives'};
+const mapCol={Pakistan:'#A5D6A7',India:'#90CAF9',Nepal:'#FFCC80',Bhutan:'#CE93D8',Bangladesh:'#F48FB1',SriLanka:'#80DEEA',Maldives:'#FFAB91'};
+const mapTips={
+  Pakistan:'Pakistan = upper LEFT corner. Think: P for Pakistan, P for the "Pad" on the left! 🟩',
+  India:'India = the HUGE one in the middle. Impossible to miss! 💙',
+  Nepal:'Nepal = the thin strip sitting ON TOP of India, squeezed between India and China! 🟨',
+  Bhutan:'Bhutan = right next to Nepal, slightly to the right. Tiny! 🟣',
+  Bangladesh:'Bangladesh = tucked in on the right side, almost surrounded by India! 🩷',
+  SriLanka:'Sri Lanka = the teardrop island hanging below India\'s tip! 🩵',
+  Maldives:'Maldives = tiny dots way to the southwest in the ocean — like freckles! 🍑',
+};
+let mQueue=[],mScore=0,mTotal=0,mActive=false,mTarget=null;
+function shuffleArr(a){return [...a].sort(()=>Math.random()-.5);}
+function startMap(){
+  mQueue=shuffleArr(mapC);mScore=0;mTotal=0;mActive=true;
+  document.getElementById('mapStartBtn').style.display='none';
+  mapC.forEach(c=>{const el=document.getElementById('mp-'+c);if(el){el.style.fill=mapCol[c];el.style.opacity='1';}});
+  nextMapQ();
+}
+function nextMapQ(){
+  if(mQueue.length===0){
+    document.getElementById('mapPrompt').innerHTML=`🎉 Done! Score: <strong>${mScore}/${mTotal}</strong>`;
+    document.getElementById('mapFB').innerHTML=mScore===mTotal?'🌟 PERFECT! You know this map cold!':mScore>=5?'Great job! Almost perfect!':'Keep practicing — you\'ll get there! 💪';
+    document.getElementById('mapStartBtn').style.display='inline-block';
+    document.getElementById('mapStartBtn').textContent='🔄 Play Again';
+    mActive=false;return;
+  }
+  mTarget=mQueue.shift();
+  document.getElementById('mapPrompt').innerHTML=`Click on: <strong>${mapL[mTarget]}</strong>`;
+  document.getElementById('mapFB').textContent='';
+  document.getElementById('mapScore').textContent=`Score: ${mScore}/${mTotal}`;
+}
+mapC.forEach(c=>{
+  const el=document.getElementById('mp-'+c);
+  if(!el)return;
+  el.addEventListener('click',()=>{
+    if(!mActive||!mTarget)return;
+    mTotal++;
+    const t=mTarget;mTarget=null;
+    if(c===t){
+      mScore++;
+      el.style.fill='#4CAF50';
+      document.getElementById('mapFB').innerHTML=`✅ Correct! <em>${mapTips[t]}</em>`;
+      document.getElementById('mapFB').style.color='#2E7D32';
+    } else {
+      el.style.fill='#F44336';
+      const cel=document.getElementById('mp-'+t);
+      if(cel){cel.style.fill='#4CAF50';cel.style.opacity='.8';}
+      document.getElementById('mapFB').innerHTML=`❌ That was <strong>${mapL[c]}</strong>. The answer was <strong>${mapL[t]}</strong>. ${mapTips[t]}`;
+      document.getElementById('mapFB').style.color='#C62828';
+    }
+    document.getElementById('mapScore').textContent=`Score: ${mScore}/${mTotal}`;
+    setTimeout(()=>{mapC.forEach(cc=>{const eel=document.getElementById('mp-'+cc);if(eel){eel.style.fill=mapCol[cc];eel.style.opacity='1';}});nextMapQ();},2200);
+  });
+});
+
+// ─── QUIZ DATA ───
+const Qs=[
+  {type:'mc',q:'How many countries make up South Asia?',opts:['5','6','7','8'],ans:2,exp:'7 countries: Bangladesh, Bhutan, India, Maldives, Nepal, Pakistan, Sri Lanka'},
+  {type:'mc',q:'What is the capital of Pakistan?',opts:['Lahore','Karachi','Islamabad','Peshawar'],ans:2,exp:'Islamabad is Pakistan\'s capital city.'},
+  {type:'mc',q:'Which mountain range contains Mount Everest?',opts:['Hindu Kush','Karakoram','Thar','Himalaya'],ans:3,exp:'Mount Everest (29,028 ft) is in the Himalaya range!'},
+  {type:'mc',q:'What is South Asia called because it\'s a large landmass part of a larger continent?',opts:['Peninsula','Archipelago','Subcontinent','Atoll'],ans:2,exp:'South Asia is a subcontinent — a large, distinct landmass that is part of Asia.'},
+  {type:'mc',q:'Who built the Taj Mahal and for whom?',opts:['Ashoka for his mother','Akbar for peace','Shah Jahan for his wife','Gandhi for India'],ans:2,exp:'Shah Jahan (5th Mughal emperor) built the Taj Mahal as a tomb for his wife Mumtaz Mahal.'},
+  {type:'mc',q:'What did Gupta Empire scholars invent that you use in math every day?',opts:['The alphabet','The calendar','The decimal number system','The compass'],ans:2,exp:'Gupta scholars developed the decimal system (0-9) — still used globally today!'},
+  {type:'mc',q:'Which is the official language of Bhutan?',opts:['Nepali','Bangla','Dzongkha','Urdu'],ans:2,exp:'Dzongkha is the official language of Bhutan.'},
+  {type:'mc',q:'A seasonal wind pattern bringing heavy rain for months is called a...',opts:['Cyclone','Typhoon','Monsoon','Delta'],ans:2,exp:'Monsoons bring heavy rainfall for months and are crucial for farming in South Asia.'},
+  {type:'mc',q:'India gained independence from Britain in which year?',opts:['1939','1945','1947','1952'],ans:2,exp:'India gained independence on August 15, 1947 — a date still celebrated as Independence Day!'},
+  {type:'mc',q:'Which two countries both claim the Kashmir region?',opts:['India & Bangladesh','Nepal & Bhutan','India & Pakistan','Sri Lanka & India'],ans:2,exp:'India and Pakistan have disputed Kashmir since 1947 — and both have nuclear weapons! 😬'},
+  {type:'tf',q:'Sri Lanka is shaped like a teardrop and is an island country.',ans:true,exp:'True! Sri Lanka is a teardrop-shaped island just south of India\'s tip.'},
+  {type:'tf',q:'The Thar Desert receives very heavy rainfall each year.',ans:false,exp:'False! The Thar Desert is one of the DRY areas of South Asia — very little rain!'},
+  {type:'tf',q:'Buddhism was founded by Siddhartha Gautama, a prince who gave up his royal life.',ans:true,exp:'True! Siddhartha Gautama gave up palace life, meditated for 49 days, and reached enlightenment.'},
+  {type:'tf',q:'The Ganges River creates the world\'s longest alluvial plain.',ans:true,exp:'True! About 1/10th of all people on Earth live along the Ganges alluvial plain!'},
+  {type:'tf',q:'Gandhi led violent armed uprisings to win India\'s independence.',ans:false,exp:'False! Gandhi used civil disobedience — peaceful protests, marches, and boycotts. No weapons!'},
+  {type:'tf',q:'The Maldives is one of the flattest countries on Earth.',ans:true,exp:'True! The highest point in Maldives is just ~2.4 meters. Rising seas are a serious threat! 🌊'},
+  {
+    type:'match',q:'Match each country to its capital city.',
+    pairs:[{t:'Bangladesh',d:'Dhaka'},{t:'Nepal',d:'Kathmandu'},{t:'Bhutan',d:'Thimphu'},{t:'Maldives',d:'Malé'}]
+  },
+  {
+    type:'match',q:'Match each term to its definition.',
+    pairs:[{t:'Atoll',d:'Ring-shaped coral island'},{t:'Delta',d:'Soil deposit at a river\'s mouth'},{t:'Monsoon',d:'Seasonal rain-bringing winds'},{t:'Boycott',d:'Refuse to buy a country\'s goods'}]
+  },
+  {
+    type:'match',q:'Match each religion to where it started or is dominant.',
+    pairs:[{t:'Sikhism',d:'Started in Punjab'},{t:'Islam',d:'Dominant in Pakistan & Bangladesh'},{t:'Buddhism',d:'Started in India with Siddhartha'},{t:'Jainism',d:'Teaches non-violence to all life'}]
+  },
+  {
+    type:'drag',q:'Sort these into: Mountain Range OR River of South Asia',
+    items:['Himalaya','Ganges','Hindu Kush','Indus','Karakoram','Brahmaputra'],
+    bins:[{lbl:'⛰️ Mountain Range',correct:['Himalaya','Hindu Kush','Karakoram']},{lbl:'🌊 River',correct:['Ganges','Indus','Brahmaputra']}]
+  },
+  {
+    type:'drag',q:'Sort these historical events from OLDEST to NEWEST — click in order!',
+    items:['Indus Valley Civilization','Aryans Create Caste System','Maurya Empire & Ashoka','Gupta Empire & Decimals','Mughal Empire & Taj Mahal','India\'s Independence'],
+    sequence:true,
+    correct:['Indus Valley Civilization','Aryans Create Caste System','Maurya Empire & Ashoka','Gupta Empire & Decimals','Mughal Empire & Taj Mahal','India\'s Independence'],
+    exp:'Chronological order: 3500 BC → 1500 BC → 300s BC → AD 300s → AD 1500s → 1947'
+  },
+  {
+    type:'drag',q:'Sort resources: which country do they belong to?',
+    items:['Iron ore 🪨','Sapphires 💎','Petroleum 🛢️','Natural Gas 🔥','Mica ⚡','Rubies 💎'],
+    bins:[{lbl:'🇮🇳 India',correct:['Iron ore 🪨','Mica ⚡']},{lbl:'🇱🇰 Sri Lanka',correct:['Sapphires 💎','Rubies 💎']},{lbl:'🇵🇰 Pakistan',correct:['Petroleum 🛢️']},{lbl:'🇧🇩 Bangladesh',correct:['Natural Gas 🔥']}]
+  },
+  {type:'mc',q:'What strategy did Gandhi use to fight British colonial rule?',opts:['Armed revolution','Peaceful civil disobedience','Asking the United Nations','Paying British to leave'],ans:1,exp:'Gandhi\'s weapon was peaceful civil disobedience — marches, fasting, boycotts. And it worked!'},
+  {type:'mc',q:'Where were the ancient cities of Harappa and Mohenjo-Daro located?',opts:['India (near Ganges)','Nepal (in mountains)','Present-day Pakistan (near Indus River)','Bangladesh (in the delta)'],ans:2,exp:'Harappa and Mohenjo-Daro were in present-day Pakistan near the Indus River — 3500 BC!'},
+  {type:'mc',q:'What is outsourcing?',opts:['Boycotting foreign products','Hiring workers in other countries','Growing food using irrigation','Building dams for electricity'],ans:1,exp:'Outsourcing = hiring companies or workers in other countries. US tech companies hire Indian workers!'},
+];
+
+// Quiz engine
+let qIdx=0,qScore=0,qAnswered=false,qSelT=null,qSelD=null,qMatchPairs=0,qMatchTotal=0,qDragState={},qSeqSelected=[],qSeqCorrect=[];
+let catMC={c:0,t:0},catTF={c:0,t:0},catM={c:0,t:0},catD={c:0,t:0};
+
+function startQuiz(){
+  document.getElementById('qIntro').style.display='none';
+  document.getElementById('qArea').style.display='block';
+  qIdx=0;qScore=0;
+  catMC={c:0,t:0};catTF={c:0,t:0};catM={c:0,t:0};catD={c:0,t:0};
+  updateQUI();renderQ();
+}
+function updateQUI(){
+  const tot=Qs.length;
+  document.getElementById('qpf').style.width=`${qIdx/tot*100}%`;
+  document.getElementById('qctr').textContent=`Question ${qIdx+1} of ${tot}`;
+  document.getElementById('qscr').textContent=`Score: ${qScore}`;
+}
+function renderQ(){
+  qAnswered=false;
+  document.getElementById('qNext').style.display='none';
+  const q=Qs[qIdx];
+  if(q.type==='mc')renderMC(q);
+  else if(q.type==='tf')renderTF(q);
+  else if(q.type==='match')renderMatch(q);
+  else if(q.type==='drag')renderDrag(q);
+}
+
+function renderMC(q){
+  const container=document.getElementById('qContainer');
+  container.innerHTML='';
+  const card=document.createElement('div');card.className='qcard';
+  const badge=document.createElement('span');badge.className='qbadge bmc';badge.textContent='Multiple Choice';
+  const qtxt=document.createElement('div');qtxt.className='qtext';qtxt.textContent=q.q;
+  const opts=document.createElement('div');opts.className='mc-opts';
+  q.opts.forEach((o,i)=>{
+    const btn=document.createElement('button');btn.className='mc-opt';
+    btn.textContent=String.fromCharCode(65+i)+'. '+o;
+    btn.addEventListener('click',()=>checkMC(i));
+    opts.appendChild(btn);
+  });
+  const fb=document.createElement('div');fb.id='qfb';fb.className='q-fb';
+  card.appendChild(badge);card.appendChild(qtxt);card.appendChild(opts);card.appendChild(fb);
+  container.appendChild(card);
+}
+function checkMC(i){
+  if(qAnswered)return;qAnswered=true;catMC.t++;
+  const q=Qs[qIdx];
+  const cont=document.getElementById('qContainer');
+  const allOpts=cont.querySelectorAll('.mc-opt');
+  allOpts.forEach(b=>{b.disabled=true;});
+  const fb=document.getElementById('qfb');
+  if(i===q.ans){allOpts[i].classList.add('correct');qScore++;catMC.c++;fb.innerHTML='✅ Correct! '+q.exp;fb.className='q-fb ok';}
+  else{allOpts[i].classList.add('wrong');allOpts[q.ans].classList.add('correct');fb.innerHTML='❌ '+q.exp;fb.className='q-fb bad';}
+  document.getElementById('qscr').textContent=`Score: ${qScore}`;
+  document.getElementById('qNext').style.display='inline-block';
+}
+
+function renderTF(q){
+  const container=document.getElementById('qContainer');
+  container.innerHTML='';
+  const card=document.createElement('div');card.className='qcard';
+  const badge=document.createElement('span');badge.className='qbadge btf';badge.textContent='True or False';
+  const qtxt=document.createElement('div');qtxt.className='qtext';qtxt.textContent=q.q;
+  const row=document.createElement('div');row.className='tf-row';
+  const tBtn=document.createElement('button');tBtn.className='tf-b tf-t';tBtn.textContent='✅ TRUE';
+  tBtn.addEventListener('click',()=>checkTF(true));
+  const fBtn=document.createElement('button');fBtn.className='tf-b tf-f';fBtn.textContent='❌ FALSE';
+  fBtn.addEventListener('click',()=>checkTF(false));
+  row.appendChild(tBtn);row.appendChild(fBtn);
+  const fb=document.createElement('div');fb.id='qfb';fb.className='q-fb';
+  card.appendChild(badge);card.appendChild(qtxt);card.appendChild(row);card.appendChild(fb);
+  container.appendChild(card);
+}
+function checkTF(a){
+  if(qAnswered)return;qAnswered=true;catTF.t++;
+  const q=Qs[qIdx];const ok=a===q.ans;
+  const cont=document.getElementById('qContainer');
+  cont.querySelectorAll('.tf-b').forEach(b=>{b.disabled=true;});
+  cont.querySelector(a?'.tf-t':'.tf-f').classList.add(ok?'sc':'sw');
+  if(!ok) cont.querySelector(a?'.tf-f':'.tf-t').style.opacity='0.4';
+  const fb=document.getElementById('qfb');
+  if(ok){qScore++;catTF.c++;fb.innerHTML='✅ Correct! '+q.exp;fb.className='q-fb ok';}
+  else{fb.innerHTML='❌ '+q.exp;fb.className='q-fb bad';}
+  document.getElementById('qscr').textContent=`Score: ${qScore}`;
+  document.getElementById('qNext').style.display='inline-block';
+}
+
+// currentMatchPairs stores the pairs for the active match question
+let currentMatchPairs=[];
+function renderMatch(q){
+  qSelT=null;qSelD=null;qMatchPairs=0;qMatchTotal=q.pairs.length;
+  currentMatchPairs=q.pairs;
+  // shuffled def order: array of original pair indices
+  const shuffOrder=[...q.pairs.map((_,i)=>i)].sort(()=>Math.random()-.5);
+
+  const container=document.getElementById('qContainer');
+  container.innerHTML='';
+  const card=document.createElement('div');card.className='qcard';
+
+  const badge=document.createElement('span');badge.className='qbadge bmatch';badge.textContent='Matching';
+  const qtxt=document.createElement('div');qtxt.className='qtext';qtxt.textContent=q.q;
+
+  const row=document.createElement('div');row.className='match-row';
+
+  // Terms column
+  const tc=document.createElement('div');tc.className='match-col';
+  tc.innerHTML='<h5>TERM</h5>';
+  q.pairs.forEach((p,i)=>{
+    const el=document.createElement('div');
+    el.className='match-item term';
+    el.id='mt-'+i;
+    el.dataset.pairIdx=i;
+    el.textContent=p.t;
+    el.addEventListener('click',()=>qSelTermEl(i,el));
+    tc.appendChild(el);
+  });
+
+  // Defs column (shuffled)
+  const dc=document.createElement('div');dc.className='match-col';
+  dc.innerHTML='<h5>DEFINITION</h5>';
+  shuffOrder.forEach((origIdx,slotIdx)=>{
+    const el=document.createElement('div');
+    el.className='match-item def';
+    el.id='md-'+slotIdx;
+    el.dataset.origIdx=origIdx;
+    el.textContent=q.pairs[origIdx].d;
+    el.addEventListener('click',()=>qSelDefEl(slotIdx,el));
+    dc.appendChild(el);
+  });
+
+  row.appendChild(tc);row.appendChild(dc);
+  const fb=document.createElement('div');fb.id='qfb';fb.className='q-fb';
+  card.appendChild(badge);card.appendChild(qtxt);card.appendChild(row);card.appendChild(fb);
+  container.appendChild(card);
+}
+
+function qSelTermEl(pairIdx,el){
+  if(el.classList.contains('mc-ok'))return;
+  document.querySelectorAll('#qContainer .match-item.term').forEach(e=>e.classList.remove('sel-t'));
+  el.classList.add('sel-t');
+  qSelT={pairIdx,el};
+  if(qSelD)doMatch();
+}
+function qSelDefEl(slotIdx,el){
+  if(el.classList.contains('mc-ok'))return;
+  document.querySelectorAll('#qContainer .match-item.def').forEach(e=>e.classList.remove('sel-d'));
+  el.classList.add('sel-d');
+  qSelD={origIdx:parseInt(el.dataset.origIdx),el};
+  if(qSelT)doMatch();
+}
+function doMatch(){
+  const st=qSelT,sd=qSelD;
+  // correct if the def's original pair index matches the selected term's pair index
+  if(sd.origIdx===st.pairIdx){
+    st.el.classList.remove('sel-t');st.el.classList.add('mc-ok');
+    sd.el.classList.remove('sel-d');sd.el.classList.add('mc-ok');
+    qMatchPairs++;
+    if(qMatchPairs===qMatchTotal){
+      qAnswered=true;catM.t++;qScore++;catM.c++;
+      const fb=document.getElementById('qfb');fb.innerHTML='✅ All matched perfectly!';fb.className='q-fb ok';
+      document.getElementById('qscr').textContent=`Score: ${qScore}`;
+      document.getElementById('qNext').style.display='inline-block';
+    }
+  } else {
+    st.el.classList.remove('sel-t');sd.el.classList.remove('sel-d');
+    st.el.classList.add('mc-bad');sd.el.classList.add('mc-bad');
+    setTimeout(()=>{st.el.classList.remove('mc-bad');sd.el.classList.remove('mc-bad');},400);
+  }
+  qSelT=null;qSelD=null;
+}
+
+function renderDrag(q){
+  qDragState={};qSeqSelected=[];
+  if(q.sequence){renderSeq(q);return;}
+  q.bins.forEach(b=>qDragState[b.lbl]=[]);
+  const shuffled=[...q.items].sort(()=>Math.random()-.5);
+
+  const container=document.getElementById('qContainer');
+  container.innerHTML='';
+  const card=document.createElement('div');card.className='qcard';
+
+  // Header
+  const badge=document.createElement('span');badge.className='qbadge bdrag';badge.innerHTML='Drag &amp; Drop';
+  const qtxt=document.createElement('div');qtxt.className='qtext';qtxt.textContent=q.q;
+  card.appendChild(badge);card.appendChild(qtxt);
+
+  // Pool
+  const pool=document.createElement('div');pool.className='dpool';pool.id='qdPool';
+  shuffled.forEach(item=>{
+    const chip=document.createElement('div');
+    chip.className='dchip';chip.dataset.item=item;chip.draggable=true;
+    chip.textContent=item;
+    chip.addEventListener('dragstart',qDragStart);
+    chip.addEventListener('touchstart',qTStart);
+    chip.addEventListener('touchmove',qTMove);
+    chip.addEventListener('touchend',qTEnd);
+    pool.appendChild(chip);
+  });
+  card.appendChild(pool);
+
+  // Bins
+  const binsDiv=document.createElement('div');binsDiv.className='dbins';
+  q.bins.forEach((b,bi)=>{
+    const bin=document.createElement('div');
+    bin.className='dbin';bin.id='qb-'+bi;bin.dataset.lbl=b.lbl;
+    bin.addEventListener('dragover',e=>{e.preventDefault();bin.classList.add('over');});
+    bin.addEventListener('dragleave',()=>bin.classList.remove('over'));
+    bin.addEventListener('drop',e=>qDrop(e,bi));
+    const h5=document.createElement('h5');h5.textContent=b.lbl;
+    const inner=document.createElement('div');inner.className='drag-items';inner.id='qbi-'+bi;
+    bin.appendChild(h5);bin.appendChild(inner);
+    binsDiv.appendChild(bin);
+  });
+  card.appendChild(binsDiv);
+
+  const fb=document.createElement('div');fb.id='qfb';fb.className='q-fb';
+  const checkBtn=document.createElement('button');checkBtn.className='btn btn-teal';
+  checkBtn.style.cssText='margin-top:.8rem;width:100%;';checkBtn.textContent='✅ Check My Answers';
+  checkBtn.addEventListener('click',checkQDrag);
+  card.appendChild(fb);card.appendChild(checkBtn);
+  container.appendChild(card);
+}
+let qDEl=null,qTEl2=null,qTClone2=null;
+function qDragStart(e){qDEl=e.target;}
+function qDrop(e,bi){
+  e.preventDefault();
+  const bin=document.getElementById('qb-'+bi);bin.classList.remove('over');
+  if(!qDEl)return;
+  const item=qDEl.dataset.item,lbl=bin.dataset.lbl;
+  qDEl.parentNode.removeChild(qDEl);
+  addQToBin(bi,item,lbl);qDEl=null;
+}
+function qTStart(e){qTEl2=e.target.closest('.dchip');if(!qTEl2)return;qTClone2=qTEl2.cloneNode(true);qTClone2.style.cssText='position:fixed;opacity:.7;pointer-events:none;z-index:9999;';document.body.appendChild(qTClone2);const t=e.touches[0];qTClone2.style.left=(t.clientX-40)+'px';qTClone2.style.top=(t.clientY-16)+'px';}
+function qTMove(e){if(!qTClone2)return;e.preventDefault();const t=e.touches[0];qTClone2.style.left=(t.clientX-40)+'px';qTClone2.style.top=(t.clientY-16)+'px';document.querySelectorAll('.dbin').forEach(b=>b.classList.remove('over'));const el=document.elementFromPoint(t.clientX,t.clientY);const bin=el?el.closest('.dbin'):null;if(bin)bin.classList.add('over');}
+function qTEnd(e){if(!qTClone2||!qTEl2)return;const t=e.changedTouches[0];document.querySelectorAll('.dbin').forEach(b=>b.classList.remove('over'));const el=document.elementFromPoint(t.clientX,t.clientY);const bin=el?el.closest('.dbin'):null;if(bin){const bi=bin.id.split('-')[1],lbl=bin.dataset.lbl,item=qTEl2.dataset.item;qTEl2.parentNode.removeChild(qTEl2);addQToBin(bi,item,lbl);}document.body.removeChild(qTClone2);qTClone2=null;qTEl2=null;}
+function addQToBin(bi,item,lbl){
+  const bItems=document.getElementById('qbi-'+bi);
+  const chip=document.createElement('div');chip.className='dchip';chip.dataset.item=item;chip.draggable=true;
+  const span=document.createElement('span');span.textContent=item+' ';
+  const btn=document.createElement('button');btn.className='rmx';btn.textContent='✕';
+  btn.addEventListener('click',()=>returnQToPool(btn,item));
+  chip.appendChild(span);chip.appendChild(btn);
+  chip.addEventListener('dragstart',qDragStart);chip.addEventListener('touchstart',qTStart);chip.addEventListener('touchmove',qTMove);chip.addEventListener('touchend',qTEnd);
+  bItems.appendChild(chip);
+  if(!qDragState[lbl])qDragState[lbl]=[];qDragState[lbl].push(item);
+}
+function returnQToPool(btn,item){
+  const chip=btn.closest('.dchip');const bin=chip.closest('.dbin');const lbl=bin.dataset.lbl;
+  chip.parentNode.removeChild(chip);
+  if(qDragState[lbl])qDragState[lbl]=qDragState[lbl].filter(i=>i!==item);
+  const pool=document.getElementById('qdPool');
+  const nc=document.createElement('div');nc.className='dchip';nc.dataset.item=item;nc.draggable=true;
+  nc.textContent=item;nc.addEventListener('dragstart',qDragStart);nc.addEventListener('touchstart',qTStart);nc.addEventListener('touchmove',qTMove);nc.addEventListener('touchend',qTEnd);
+  pool.appendChild(nc);
+}
+function checkQDrag(){
+  if(qAnswered)return;
+  const q=Qs[qIdx];let allOk=true;
+  q.bins.forEach((b,bi)=>{
+    const placed=(qDragState[b.lbl]||[]).slice().sort().join(',');
+    const correct=b.correct.slice().sort().join(',');
+    const binEl=document.getElementById('qb-'+bi);
+    if(placed===correct){binEl.classList.add('dbin-ok');}
+    else{binEl.classList.add('dbin-bad');allOk=false;}
+  });
+  qAnswered=true;catD.t++;
+  const fb=document.getElementById('qfb');
+  if(allOk){qScore++;catD.c++;fb.innerHTML='✅ All sorted correctly! Amazing!';fb.className='q-fb ok';}
+  else{fb.innerHTML='❌ Some items are in wrong bins. Check the highlighted ones!';fb.className='q-fb bad';}
+  document.getElementById('qscr').textContent=`Score: ${qScore}`;
+  document.getElementById('qNext').style.display='inline-block';
+}
+
+// Sequence drag
+function renderSeq(q){
+  qSeqSelected=[];qSeqCorrect=q.correct;
+  const shuffled=[...q.items].sort(()=>Math.random()-.5);
+  const container=document.getElementById('qContainer');
+  container.innerHTML='';
+  const card=document.createElement('div');card.className='qcard';
+  card.innerHTML=`
+    <span class="qbadge bdrag">Sequence Order</span>
+    <div class="qtext">${q.q}</div>
+    <p style="font-size:.82rem;color:#888;font-weight:700;margin-bottom:.5rem;">Click events in order from OLDEST to NEWEST:</p>
+    <div class="seq-items" id="seqItems"></div>
+    <p style="font-size:.78rem;color:#aaa;font-weight:700;margin-bottom:.4rem;">Your order:</p>
+    <div class="seq-order" id="seqOrder">${q.items.map((_,i)=>`<div class="seq-slot" id="ss-${i}">${i+1}</div>`).join('')}</div>
+    <div id="qfb" class="q-fb"></div>`;
+  container.appendChild(card);
+  const seqItems=document.getElementById('seqItems');
+  shuffled.forEach(s=>{
+    const el=document.createElement('div');
+    el.className='seq-chip';
+    el.textContent=s;
+    el.addEventListener('click',()=>pickSeq(el,s));
+    seqItems.appendChild(el);
+  });
+}
+function pickSeq(el,item){
+  if(el.classList.contains('correct')||el.classList.contains('wrong'))return;
+  const n=qSeqSelected.length;
+  const expected=qSeqCorrect[n];
+  if(item===expected){
+    el.classList.add('correct');qSeqSelected.push(item);
+    const slot=document.getElementById('ss-'+n);
+    if(slot){slot.textContent=item;slot.style.background='#4CAF50';slot.style.color='#fff';slot.style.border='none';}
+    if(qSeqSelected.length===qSeqCorrect.length){
+      qAnswered=true;catD.t++;qScore++;catD.c++;
+      const fb=document.getElementById('qfb');fb.innerHTML='✅ Perfect sequence! You know your South Asia history!';fb.className='q-fb ok';
+      document.getElementById('qscr').textContent=`Score: ${qScore}`;
+      document.getElementById('qNext').style.display='inline-block';
+    }
+  } else {
+    el.classList.add('wrong');
+    setTimeout(()=>el.classList.remove('wrong'),500);
+    const fb=document.getElementById('qfb');fb.innerHTML=`❌ Not quite! The next one should be: <strong>${expected}</strong>`;fb.className='q-fb bad';
+  }
+}
+
+function nextQ(){
+  qIdx++;
+  if(qIdx>=Qs.length){showResults();return;}
+  updateQUI();renderQ();
+}
+
+function confettiBurst(){
+  const burst=document.createElement('div');burst.className='confetti-burst';
+  const colors=['#FF6B35','#FFD166','#00BFA5','#FF6B6B','#9B59B6','#74C0FC'];
+  for(let i=0;i<40;i++){
+    const cp=document.createElement('div');cp.className='cp';
+    const color=colors[i%colors.length];
+    cp.style.cssText=`background:${color};left:${Math.random()*100}%;animation-delay:${Math.random()*.5}s;animation-duration:${1+Math.random()*.8}s;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;`;
+    burst.appendChild(cp);
+  }
+  document.body.appendChild(burst);
+  setTimeout(()=>burst.remove(),2000);
+}
+
+function showResults(){
+  document.getElementById('qArea').style.display='none';
+  document.getElementById('qResults').style.display='block';
+  const tot=Qs.length,pct=Math.round(qScore/tot*100);
+  document.getElementById('rScore').textContent=`${qScore}/${tot}`;
+  let msg,emoji;
+  if(pct===100){msg='PERFECT! 🌟 You\'re a South Asia EXPERT!';emoji='🎉🌟🏆🎊✨🦚';confettiBurst();}
+  else if(pct>=80){msg='Excellent work! You almost got it all!';emoji='🎉🌟🎊🦚';confettiBurst();}
+  else if(pct>=60){msg='Good job! Review your weak spots!';emoji='👏📚💪';}
+  else{msg='Keep studying — you\'ve totally got this!';emoji='💪📖🌏';}
+  document.getElementById('rEmoji').textContent=emoji;
+  document.getElementById('rMsg').textContent=msg;
+  document.getElementById('rSub').textContent=`${pct}% — ${qScore} correct out of ${tot} questions`;
+  document.getElementById('rBreak').innerHTML=`<div style="font-weight:800;margin-bottom:.5rem;">📊 Breakdown</div>
+    <div class="rb"><span>Multiple Choice</span><span>${catMC.c}/${catMC.t}</span></div>
+    <div class="rb"><span>True / False</span><span>${catTF.c}/${catTF.t}</span></div>
+    <div class="rb"><span>Matching</span><span>${catM.c}/${catM.t}</span></div>
+    <div class="rb"><span>Drag & Drop / Sequence</span><span>${catD.c}/${catD.t}</span></div>`;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function resetQuiz(){
+  document.getElementById('qResults').style.display='none';
+  document.getElementById('qIntro').style.display='block';
+}
+</script>
+</body>
+</html>
